@@ -1,8 +1,15 @@
 import clsx from 'clsx';
+import { Link } from 'react-router';
+import { useState } from 'react';
+
+import config from '@/config';
 import { Logo } from '@/components/icons';
-import Search from '@/components/Search';
+import Search from '@/layouts/components/Search';
+import Login from '@/components/Login';
 
 function Header() {
+    const [openModal, setOpenModal] = useState(false);
+
     return (
         <div
             className={clsx(
@@ -12,7 +19,9 @@ function Header() {
             )}
         >
             <div className="content flex items-center justify-between">
-                <Logo />
+                <Link to={config.routes.home} className="ml-4">
+                    <Logo />
+                </Link>
                 <Search />
                 <button
                     className={clsx(
@@ -20,9 +29,11 @@ function Header() {
                         'bg-linear-to-r from-[#063458] to-[#1c5e94]',
                         'hover:bg-[#337ab7] hover:from-transparent hover:to-transparent',
                     )}
+                    onClick={() => setOpenModal(true)}
                 >
                     Đăng Nhập
                 </button>
+                {openModal && <Login onClose={() => setOpenModal(false)} />}
             </div>
         </div>
     );

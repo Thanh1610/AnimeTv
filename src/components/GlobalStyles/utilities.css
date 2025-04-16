@@ -1,0 +1,33 @@
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    transition: 0.4s all;
+    white-space: nowrap;
+    padding: 6px 12px;
+    border-radius: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn-danger {
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #c02425 0%, #f0cb35 51%, #c02425 100%);
+    transition: 0.7s;
+}
+
+.btn-danger:hover {
+    background-position: right center;
+}
+
+.content {
+    margin: 0 auto;
+    width: 73.125rem;
+}
