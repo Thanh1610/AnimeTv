@@ -46,7 +46,7 @@ function Login({ onClose }) {
     const inputStyles = `w-full rounded-[0.25rem] border-1 border-[#66afe9]
      bg-[var(--white)] px-3 py-1.5 text-[var(--black)]`;
     return (
-        <div className="fixed inset-0 bg-[var(--black)]/30" onClick={handleOverlayClick}>
+        <div className="fixed inset-0 z-[9999] bg-[var(--black)]/30" onClick={handleOverlayClick}>
             <form
                 className={clsx(
                     'box-shadow mx-auto my-8 min-h-14 w-[37.5rem] bg-[#151d25]',
@@ -144,10 +144,7 @@ function Login({ onClose }) {
 
                     <button
                         type="submit"
-                        className={clsx(
-                            'btn btn-danger w-[100px] !rounded-[0.25rem] text-[var(--white)]',
-                            'bg-[linear-gradient(to_right,_#C02425_0%,_#F0CB35_51%,_#C02425_100%)]',
-                        )}
+                        className={clsx('btn btn-danger w-[100px] !rounded-[0.25rem] text-[var(--white)]')}
                     >
                         {registerOn ? 'Đăng ký' : 'Đăng nhập'}
                     </button>
