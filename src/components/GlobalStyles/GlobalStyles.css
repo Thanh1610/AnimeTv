@@ -1,19 +1,15 @@
+@import 'tailwindcss';
 @import './utilities.css';
 @import './transition.css';
-@import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 
-:root {
-    --primary: #1b2d3c;
-    --boder: #273e52;
-    --text: #a5a5a5;
-    --black: #000;
-    --white: #fff;
-    --bg: #222d38;
+@theme {
+    --font-family: 'IBM Plex Sans', sans-serif;
 
-    --font-family: 'Nunito', sans-serif;
+    --color-primary: #1b2d3c;
+    --color-boder: #273e52;
+    --color-text: #a5a5a5;
+
     --scrollbar: rgba(255, 255, 255, 0.3);
-
     --header-height: 4.63rem;
 }
 
@@ -28,7 +24,7 @@ html {
 
 body {
     background-color: #222d38;
-    color: var(--text);
+    color: var(--color-text);
     font-size: 0.8125rem;
     font-weight: 400;
     line-height: 1.6;
@@ -47,6 +43,15 @@ body {
 }
 ::-webkit-scrollbar-track {
     background: #213342;
+}
+
+.hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
 }
 
 input,

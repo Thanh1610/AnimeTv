@@ -13,7 +13,7 @@ function Header() {
     return (
         <div
             className={clsx(
-                'flex items-center bg-[var(--primary)]',
+                'bg-primary flex items-center',
                 'h-[var(--header-height)] w-full transition-all duration-500',
                 'bg-[linear-gradient(to_right,_#234a71_0%,_#101519_51%,_#151d25_100%)] bg-[length:200%_100%]',
             )}

@@ -1,33 +1,87 @@
-.btn {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    transition: 0.4s all;
-    white-space: nowrap;
-    padding: 6px 12px;
-    border-radius: 20px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+@layer utilities {
+    .content {
+        margin: 0 auto;
+        width: 73.125rem;
+    }
 
-.btn-danger {
-    background-size: 200% 100%;
-    background-image: linear-gradient(to right, #c02425 0%, #f0cb35 51%, #c02425 100%);
-    transition: 0.7s;
-}
+    .btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        transition: 0.4s all;
+        white-space: nowrap;
+        padding: 6px 12px;
+        border-radius: 20px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 
-.btn-danger:hover {
-    background-position: right center;
-}
+    .btn-danger {
+        background-size: 200% 100%;
+        background-image: linear-gradient(to right, #c02425 0%, #f0cb35 51%, #c02425 100%);
+        transition: 0.7s;
+    }
 
-.content {
-    margin: 0 auto;
-    width: 73.125rem;
+    .btn-danger:hover,
+    .status:hover {
+        background-position: right center;
+    }
+
+    .status {
+        background: linear-gradient(to right, #ff00cc 0%, #333399 51%, #ff00cc 100%) 0% 0% / 200% 100% #a94442;
+        transition: 0.7s ease;
+    }
+
+    .status::after {
+        content: '';
+        transform: rotate(44deg);
+        position: absolute;
+        bottom: -4px;
+        left: 2px;
+        z-index: 999999;
+        border-width: 4px;
+        border-style: solid;
+        border-color: transparent transparent rgb(95, 14, 12);
+        border-image: initial;
+        border-bottom: 4px solid rgb(95, 14, 12);
+    }
+
+    .danger-text {
+        background: linear-gradient(to right, rgb(255, 138, 0), rgb(255, 32, 112)) text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 8px;
+    }
+
+    .danger-text::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+        background: linear-gradient(to right, rgb(255, 138, 0), rgb(255, 32, 112));
+    }
+
+    .bg-blur {
+        background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(6, 6, 6, 0.55) 30%, rgba(0, 0, 0, 0.92) 100%);
+    }
+
+    .arrow {
+        width: 0;
+        height: 0;
+        margin-top: -1px;
+        border-left: 16px solid transparent;
+        border-right: 16px solid transparent;
+        border-top: 16px solid #f7f7f7;
+    }
 }

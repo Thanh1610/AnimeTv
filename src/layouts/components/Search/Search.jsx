@@ -27,7 +27,7 @@ function Search() {
     return (
         <div
             className={clsx(
-                'h-[2.125rem] w-[27.625rem] bg-[#12171b6e] text-[var(--text)]/10',
+                'text-text/10 h-[2.125rem] w-[27.625rem] bg-[#12171b6e]',
                 'flex items-center justify-between',
                 'overflow-hidden border-1 border-[var(--border)]',
                 'transition-all duration-300 ease-in-out',
@@ -36,7 +36,7 @@ function Search() {
             onMouseDown={handleMouseDown}
             onBlur={handleBlur}
         >
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="px-2 text-[var(--white)]" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="px-2 text-white" />
             <input
                 className="h-full w-full text-[#7aa6ce] caret-[#7aa6ce] transition"
                 placeholder="Tìm Kiếm Phim..."
@@ -46,7 +46,7 @@ function Search() {
                 onChange={handleChange}
             />
             <div onClick={handleClear}>
-                <FontAwesomeIcon icon={faCircleXmark} className="px-2 text-[var(--white)]" />
+                <FontAwesomeIcon icon={faCircleXmark} className="px-2 text-white" />
             </div>
         </div>
     );
