@@ -30,7 +30,8 @@
     }
 
     .btn-danger:hover,
-    .status:hover {
+    .status:hover,
+    .post:hover {
         background-position: right center;
     }
 
@@ -51,6 +52,13 @@
         border-color: transparent transparent rgb(95, 14, 12);
         border-image: initial;
         border-bottom: 4px solid rgb(95, 14, 12);
+    }
+
+    .post {
+        background: #0b0f15;
+        background-size: 200% 100%;
+        background-image: linear-gradient(to right, #151d25 0%, #11151500 51%, #060808 50%);
+        transition: all 0.4s ease-in-out;
     }
 
     .danger-text {

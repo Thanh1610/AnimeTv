@@ -11,7 +11,7 @@ function Wrapper({ children }) {
             >
                 {children}
             </div>
-            <div className="arrow" data-popper-arrow></div>
+            {/* <div className="arrow" data-popper-arrow></div> */}
         </>
     );
 }
