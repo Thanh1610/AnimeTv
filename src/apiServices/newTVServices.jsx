@@ -1,6 +1,6 @@
 import * as request from '@/utils/request';
 
-export const tvSeries = async (language = 'vi', page = 1) => {
+export const newTV = async (language = 'vi', page = 1) => {
     try {
         const res = await request.get('trending/tv/day', {
             params: {
@@ -8,7 +8,6 @@ export const tvSeries = async (language = 'vi', page = 1) => {
                 page,
             },
         });
-        console.log(res.results);
 
         return res.results;
     } catch (error) {
@@ -16,4 +15,4 @@ export const tvSeries = async (language = 'vi', page = 1) => {
     }
 };
 
-tvSeries();
+newTV();

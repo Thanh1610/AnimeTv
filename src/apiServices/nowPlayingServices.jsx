@@ -1,6 +1,6 @@
 import * as request from '@/utils/request';
 
-export const singleMovie = async (language = 'vi', page = 2) => {
+export const nowPlaying = async (language = 'vi', page = 1) => {
     try {
         const res = await request.get('movie/now_playing', {
             params: {
@@ -15,4 +15,4 @@ export const singleMovie = async (language = 'vi', page = 2) => {
     }
 };
 
-singleMovie();
+nowPlaying();

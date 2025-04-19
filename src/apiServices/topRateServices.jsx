@@ -9,8 +9,6 @@ export const topRate = async (language = 'vi', page = 1) => {
             },
         });
 
-        console.log(res.results);
-
         return res.results;
     } catch (error) {
         console.log(error);

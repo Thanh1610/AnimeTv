@@ -43,8 +43,9 @@ function MovieInfo({ data }) {
                                             {data.vote_average.toFixed(2)} / 10
                                         </span>
                                     </div>
-                                    <div className="mb-1 text-[#545454]">
-                                        Thể loại: <span className="text-[#337ab7]">{data.media_type}</span>
+                                    <div className="my-1 text-[#545454]">
+                                        Ngôn ngữ:{' '}
+                                        <span className="text-[#337ab7]">{data.original_language}</span>
                                     </div>
                                 </div>
                             </div>
