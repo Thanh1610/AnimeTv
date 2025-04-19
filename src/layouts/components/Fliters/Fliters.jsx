@@ -49,7 +49,8 @@ function Fliters() {
             <div className="border-b-1 border-[#1d2731]">
                 <div className="flex items-center justify-between p-3.5">
                     <div>
-                        AnimeTv | Xem Anime vietsub | Xem Anime hay | Xem Hoạt Hình 3d | Xem hoạt Hình Trung Quốc | hh3d
+                        MoviXTv | Phim Moi | Phim Hay | Xem Phim Online | Phim China | Xem hoạt Hình Trung
+                        Quốc | hh3d
                     </div>
                     <div className="text-[#7aa6ce]" onClick={() => setOpenFilters((prev) => !prev)}>
                         Lọc phim

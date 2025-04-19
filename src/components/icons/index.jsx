@@ -6,10 +6,24 @@ export const Logo = () => {
             <circle cx="22" cy="17" r="3" fill="white" />
             <line x1="5" y1="5" x2="10" y2="0" stroke="white" strokeWidth="2" />
             <line x1="25" y1="5" x2="20" y2="0" stroke="white" strokeWidth="2" />
-            <text x="40" y="22" fontFamily="Verdana, sans-serif" fontSize="16" fill="#38BDF8" fontWeight="bold">
-                Anime
+            <text
+                x="40"
+                y="22"
+                fontFamily="Verdana, sans-serif"
+                fontSize="16"
+                fill="#38BDF8"
+                fontWeight="bold"
+            >
+                MoviX
             </text>
-            <text x="92" y="22" fontFamily="Verdana, sans-serif" fontSize="16" fill="#E11D48" fontWeight="bold">
+            <text
+                x="92"
+                y="22"
+                fontFamily="Verdana, sans-serif"
+                fontSize="16"
+                fill="#E11D48"
+                fontWeight="bold"
+            >
                 Tv
             </text>
         </svg>
