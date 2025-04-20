@@ -1,12 +1,14 @@
 import config from '@/config';
 import Home from '@/pages/Home';
-import New from '@/pages/New';
-import Popular from '@/pages/Popular';
+import Search from '@/pages/SearchPage';
+import Account from '@/pages/Account';
+import changePassword from '@/pages/changePassword';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
-    { path: config.routes.new, component: New },
-    { path: config.routes.popular, component: Popular },
+    { path: config.routes.search, component: Search },
+    { path: config.routes.account, component: Account },
+    { path: config.routes.changePassword, component: changePassword },
 ];
 
 export const privateRoutes = [];

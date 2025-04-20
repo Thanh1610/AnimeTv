@@ -1,11 +1,13 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 
-function Login({ onClose }) {
+function Login({ onClose, onLoginSuccess }) {
     const [isVisible, setIsVisible] = useState(true);
     const [registerOn, setRegisterOn] = useState(false);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
 
     const handleOverlayClick = () => {
         handleClose();
@@ -32,13 +34,20 @@ function Login({ onClose }) {
             if (password !== confirmPassword) {
                 alert('Mật khẩu không khớp!');
                 return;
-            } else {
-                alert('Đăng kí thành công !');
-                handleClose();
             }
-        } else {
-            alert('Đăng nhập thành công!');
+            const user = { name, email, password };
+            localStorage.setItem('user', JSON.stringify(user));
+            alert('Đăng kí thành công !');
             handleClose();
+        } else {
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+            if (storedUser && storedUser.email === email && storedUser.password === password) {
+                alert('Đăng Nhập thành công !');
+                onLoginSuccess(storedUser.name);
+                handleClose();
+            } else {
+                alert('Email hoặc mật khẩu không đúng!');
+            }
         }
     };
 
@@ -59,7 +68,10 @@ function Login({ onClose }) {
                 {/* header */}
                 <div className="flex items-center justify-between border-b-1 border-[#e5e5e5] px-3.5 py-2">
                     <p>{registerOn ? 'Đăng Kí' : 'Đăng Nhập'}</p>
-                    <div className="cursor-pointer text-[1.3125rem] font-black hover:text-white" onClick={handleClose}>
+                    <div
+                        className="cursor-pointer text-[1.3125rem] font-black hover:text-white"
+                        onClick={handleClose}
+                    >
                         &times;
                     </div>
                 </div>
@@ -71,14 +83,26 @@ function Login({ onClose }) {
                             <label className={lableStyles} htmlFor="name">
                                 Tên :
                             </label>
-                            <input id="name" type="text" className={inputStyles} required />
+                            <input
+                                id="name"
+                                type="text"
+                                className={inputStyles}
+                                required
+                                onChange={(e) => setName(e.target.value)}
+                            />
                         </div>
                     )}
                     <div className="mb-3.5">
                         <label className={lableStyles} htmlFor="email">
                             Email :
                         </label>
-                        <input id="email" type="email" className={inputStyles} required />
+                        <input
+                            id="email"
+                            type="email"
+                            className={inputStyles}
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
 
                     <div className="mb-3.5">
@@ -139,7 +163,10 @@ function Login({ onClose }) {
                         Đóng
                     </button>
 
-                    <button type="submit" className={clsx('btn btn-danger w-[100px] !rounded-[0.25rem] text-white')}>
+                    <button
+                        type="submit"
+                        className={clsx('btn btn-danger w-[100px] !rounded-[0.25rem] text-white')}
+                    >
                         {registerOn ? 'Đăng ký' : 'Đăng nhập'}
                     </button>
                 </div>

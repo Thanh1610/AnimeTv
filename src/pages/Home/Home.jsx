@@ -6,9 +6,10 @@ import * as topRateServices from '@/apiServices/topRateServices';
 import * as newMovieServices from '@/apiServices/newMovieServices';
 import * as newTVServices from '@/apiServices/newTVServices';
 import * as nowPlayingServices from '@/apiServices/nowPlayingServices';
-import * as topCartoonTvServices from '@/apiServices/topCartoonTvServices';
+import * as animationTvServices from '@/apiServices/animationTvServices';
 import * as animeServices from '@/apiServices/animeServices';
 import * as chinaAnimationServices from '@/apiServices/chinaAnimationServices';
+import * as animationMovieServices from '@/apiServices/animationMovieServices';
 
 function Home() {
     return (
@@ -56,13 +57,13 @@ function Home() {
                 <div className="w-[30%]">
                     <MovieListSmall
                         title="Hoạt Hình Bộ AnimeTv"
-                        fetchMovies={topCartoonTvServices.topCartoonTv}
+                        fetchMovies={animationTvServices.animationTv}
                         limit={5}
                     />
 
                     <MovieListSmall
                         title="Hoạt Hình Lẻ AnimeTv"
-                        fetchMovies={topCartoonTvServices.topCartoonTv}
+                        fetchMovies={animationMovieServices.animationMovie}
                         limit={5}
                     />
                 </div>

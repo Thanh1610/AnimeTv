@@ -2,11 +2,13 @@ import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router';
 
 function Search() {
     const [isFocused, setIsFocused] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const inputRef = useRef();
+    const navigate = useNavigate();
 
     const handleMouseDown = () => setIsFocused(true);
 
@@ -24,8 +26,18 @@ function Search() {
         inputRef.current.focus();
         setIsFocused(true);
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('entered!');
+
+        if (searchValue !== '') {
+            navigate(`/search/${encodeURIComponent(searchValue.replace(/ /g, '+'))}`);
+        }
+    };
+
     return (
-        <div
+        <form
             className={clsx(
                 'text-text/10 h-[2.125rem] w-[27.625rem] bg-[#12171b6e]',
                 'flex items-center justify-between',
@@ -33,14 +45,16 @@ function Search() {
                 'transition-all duration-300 ease-in-out',
                 isFocused ? 'rounded-none' : 'rounded-3xl',
             )}
+            onSubmit={handleSubmit}
             onMouseDown={handleMouseDown}
             onBlur={handleBlur}
         >
             <FontAwesomeIcon icon={faMagnifyingGlass} className="px-2 text-white" />
             <input
                 className="h-full w-full text-[#7aa6ce] caret-[#7aa6ce] transition"
-                placeholder="Tìm Kiếm Phim..."
+                placeholder="Tìm Kiếm Phim, Đạo diễn..."
                 type="text"
+                required
                 ref={inputRef}
                 value={searchValue}
                 onChange={handleChange}
@@ -48,7 +62,7 @@ function Search() {
             <div onClick={handleClear}>
                 <FontAwesomeIcon icon={faCircleXmark} className="px-2 text-white" />
             </div>
-        </div>
+        </form>
     );
 }
 

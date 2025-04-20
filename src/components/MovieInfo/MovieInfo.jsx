@@ -40,12 +40,12 @@ function MovieInfo({ data }) {
                                     <div className="my-1 text-[#545454]">
                                         Đánh Giá:{' '}
                                         <span className="text-[#337ab7]">
-                                            {data.vote_average.toFixed(2)} / 10
+                                            {data?.vote_average?.toFixed(2)} / 10
                                         </span>
                                     </div>
                                     <div className="my-1 text-[#545454]">
                                         Ngôn ngữ:{' '}
-                                        <span className="text-[#337ab7]">{data.original_language}</span>
+                                        <span className="text-[#337ab7]">{data?.original_language}</span>
                                     </div>
                                 </div>
                             </div>

@@ -2,17 +2,22 @@ import { useState, useEffect } from 'react';
 
 import MovieInfo from '@/components/MovieInfo';
 
-function MovieList({ title, fetchMovies, limit, seeAll }) {
+function MovieList({ title, fetchMovies, limit, seeAll, query = '' }) {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await fetchMovies();
+            const result = await fetchMovies(query);
+
+            if (!result || result.length === 0) {
+                setMovies([]);
+                return;
+            }
             setMovies(limit ? result.slice(0, limit) : result);
         };
 
         fetchApi();
-    }, [fetchMovies, limit]);
+    }, [fetchMovies, limit, query]);
 
     return (
         <div className="px-3.5 pt-2.5 pb-5">
@@ -23,9 +28,13 @@ function MovieList({ title, fetchMovies, limit, seeAll }) {
 
             <div className="relative">
                 <div className="flex flex-wrap gap-3">
-                    {movies.map((item) => (
-                        <MovieInfo data={item} key={item.id} />
-                    ))}
+                    {movies.length > 0 ? (
+                        movies.map((item) => <MovieInfo data={item} key={item.id} />)
+                    ) : (
+                        <div className="w-full text-center text-gray-500">
+                            Rất tiếc, không có nội dung nào trùng khớp yêu cầu.
+                        </div>
+                    )}
                 </div>
                 {seeAll && (
                     <div className="mr-7 flex justify-end">

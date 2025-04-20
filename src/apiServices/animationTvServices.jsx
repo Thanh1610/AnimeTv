@@ -1,6 +1,6 @@
 import * as request from '@/utils/request';
 
-export const topCartoonTv = async (language = 'vi', page = 1) => {
+export const animationTv = async (language = 'vi', page = 1) => {
     try {
         const res = await request.get('tv/top_rated', {
             params: {
@@ -19,4 +19,4 @@ export const topCartoonTv = async (language = 'vi', page = 1) => {
     }
 };
 
-topCartoonTv();
+animationTv();
