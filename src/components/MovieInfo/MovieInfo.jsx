@@ -4,10 +4,15 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import React from 'react';
 import Tippy from '@tippyjs/react/headless';
+
+import { countryCodes } from '@/config/countryCodes';
 import WrapperMovie from '@/components/Popper';
 
 function MovieInfo({ data }) {
     const [isHover, setIsHover] = useState(false);
+    const countryMap = Object.fromEntries(countryCodes.map(({ code, name }) => [code, name]));
+
+    const countries = data.origin_country?.map((code) => countryMap[code] || code).join(', ');
 
     return (
         <>
@@ -44,8 +49,10 @@ function MovieInfo({ data }) {
                                         </span>
                                     </div>
                                     <div className="my-1 text-[#545454]">
-                                        Ngôn ngữ:{' '}
-                                        <span className="text-[#337ab7]">{data?.original_language}</span>
+                                        {countries ? 'Quốc Gia:' : 'Ngôn Ngữ Gốc:'}{' '}
+                                        <span className="text-[#337ab7]">
+                                            {countries || data.original_language || 'Không xác định'}
+                                        </span>
                                     </div>
                                 </div>
                             </div>

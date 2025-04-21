@@ -1,23 +1,66 @@
 import { useState, useEffect } from 'react';
 
 import MovieInfo from '@/components/MovieInfo';
+import Pagination from '@/components/Pagination';
 
-function MovieList({ title, fetchMovies, limit, seeAll, query = '' }) {
+function MovieList({
+    title,
+    fetchMovies,
+    limit,
+    seeAll,
+    query = '',
+    withGenres,
+    nation,
+    pagination,
+    currentPage,
+}) {
     const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const fetchApi = async () => {
-            const result = await fetchMovies(query);
+        let isMounted = true;
+        setIsLoading(true);
 
-            if (!result || result.length === 0) {
-                setMovies([]);
-                return;
+        const fetchApi = async () => {
+            try {
+                const result = await fetchMovies(query, currentPage, withGenres, nation);
+
+                if (isMounted) {
+                    if (!result || result.length === 0) {
+                        setMovies([]);
+                    } else {
+                        setMovies(limit ? result.slice(0, limit) : result);
+                    }
+                }
+            } catch (error) {
+                if (isMounted) {
+                    console.error('Error fetching movies:', error);
+                    setMovies([]);
+                }
+            } finally {
+                if (isMounted) {
+                    setIsLoading(false);
+                }
             }
-            setMovies(limit ? result.slice(0, limit) : result);
         };
 
         fetchApi();
-    }, [fetchMovies, limit, query]);
+
+        return () => {
+            isMounted = false;
+        };
+    }, [fetchMovies, limit, query, withGenres, currentPage, nation]);
+
+    const renderMovies = () => {
+        if (movies.length > 0) {
+            return movies.map((item) => <MovieInfo data={item} key={item.id} />);
+        }
+        return (
+            <div className="w-full text-center text-gray-500">
+                Rất tiếc, không có nội dung nào trùng khớp yêu cầu.
+            </div>
+        );
+    };
 
     return (
         <div className="px-3.5 pt-2.5 pb-5">
@@ -27,15 +70,11 @@ function MovieList({ title, fetchMovies, limit, seeAll, query = '' }) {
             </div>
 
             <div className="relative">
-                <div className="flex flex-wrap gap-3">
-                    {movies.length > 0 ? (
-                        movies.map((item) => <MovieInfo data={item} key={item.id} />)
-                    ) : (
-                        <div className="w-full text-center text-gray-500">
-                            Rất tiếc, không có nội dung nào trùng khớp yêu cầu.
-                        </div>
-                    )}
-                </div>
+                {isLoading ? (
+                    <div className="w-full text-center text-gray-500">Đang tải...</div>
+                ) : (
+                    <div className="flex flex-wrap gap-3">{renderMovies()}</div>
+                )}
                 {seeAll && (
                     <div className="mr-7 flex justify-end">
                         <div className="see-all my-[5px] w-[30%] rounded-[20px] py-1 pr-3.5 !text-right text-white">
@@ -44,6 +83,8 @@ function MovieList({ title, fetchMovies, limit, seeAll, query = '' }) {
                     </div>
                 )}
             </div>
+
+            {pagination && <Pagination currentPage={currentPage} totalPages={20} />}
         </div>
     );
 }

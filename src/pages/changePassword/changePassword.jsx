@@ -1,7 +1,7 @@
 import AccountSetting from '@/components/AccountSetting';
 
-function changePassword() {
+function ChangePassword() {
     return <AccountSetting title="Đổi mật khẩu" />;
 }
 
-export default changePassword;
+export default ChangePassword;
