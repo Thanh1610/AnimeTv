@@ -1,7 +1,6 @@
-import Fliters from '@/layouts/components/Fliters';
+import Filters from '@/layouts/components/Filters';
 import MovieList from '@/layouts/components/MovieList';
 import MovieListSmall from '@/layouts/components/MovieListSmall';
-
 import * as topRateServices from '@/apiServices/topRateServices';
 import * as newMovieServices from '@/apiServices/newMovieServices';
 import * as newTVServices from '@/apiServices/newTVServices';
@@ -10,11 +9,13 @@ import * as animationTvServices from '@/apiServices/animationTvServices';
 import * as animeServices from '@/apiServices/animeServices';
 import * as chinaAnimationServices from '@/apiServices/chinaAnimationServices';
 import * as animationMovieServices from '@/apiServices/animationMovieServices';
+import { useFilters } from '@/hook/useFilters';
 
 function Home() {
+    const { applyFilters } = useFilters();
     return (
         <div className="bg-[#151d25]">
-            <Fliters />
+            <Filters onApplyFilters={applyFilters} />
             <MovieList title="Phim Đề Cử" fetchMovies={topRateServices.topRate} limit={6} />
             <div className="flex w-full gap-2 px-3.5">
                 <div className="w-[50%]">

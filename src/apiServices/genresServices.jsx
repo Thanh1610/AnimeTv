@@ -1,8 +1,6 @@
 import * as request from '@/utils/request';
 
 export const genres = async (with_origin_country = '', page = 1, with_genres, language = 'vi') => {
-    // console.log('Fetching movies with:', { language, page, with_origin_country, with_genres });
-
     try {
         const res = await request.get('discover/movie', {
             params: {

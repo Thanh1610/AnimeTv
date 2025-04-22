@@ -10,6 +10,11 @@ function MovieList({
     seeAll,
     query = '',
     withGenres,
+    sort_by,
+    type,
+    with_origin_country,
+    primary_release_year,
+    first_air_date_year,
     nation,
     pagination,
     currentPage,
@@ -23,7 +28,17 @@ function MovieList({
 
         const fetchApi = async () => {
             try {
-                const result = await fetchMovies(query, currentPage, withGenres, nation);
+                const result = await fetchMovies(
+                    query,
+                    currentPage,
+                    withGenres,
+                    nation,
+                    sort_by,
+                    type,
+                    with_origin_country,
+                    primary_release_year,
+                    first_air_date_year,
+                );
 
                 if (isMounted) {
                     if (!result || result.length === 0) {
@@ -49,7 +64,19 @@ function MovieList({
         return () => {
             isMounted = false;
         };
-    }, [fetchMovies, limit, query, withGenres, currentPage, nation]);
+    }, [
+        fetchMovies,
+        query,
+        currentPage,
+        withGenres,
+        sort_by,
+        type,
+        with_origin_country,
+        primary_release_year,
+        first_air_date_year,
+        nation,
+        limit,
+    ]);
 
     const renderMovies = () => {
         if (movies.length > 0) {

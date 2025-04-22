@@ -6,9 +6,9 @@ import ChangePassword from '@/pages/ChangePassword';
 import GenrePage from '@/pages/GenrePage';
 import NationPage from '@/pages/NationPage';
 import { euroAmericaCountries } from '@/config/countryCodes';
+import FilterResultsPage from '@/pages/FilterResultsPage';
 
 const europeAmerica = euroAmericaCountries.join('|');
-console.log(europeAmerica);
 
 const genres = [
     { path: '/the-loai/hanh-dong/page/:page', title: 'Phim Thể Loại Hành Động', withGenres: '28' },
@@ -49,6 +49,10 @@ export const publicRoutes = [
         path: nation.path,
         component: () => <NationPage title={nation.title} nation={nation.with_origin_country} />,
     })),
+    {
+        path: config.routes.filter,
+        component: FilterResultsPage,
+    },
 ];
 
 export const privateRoutes = [];

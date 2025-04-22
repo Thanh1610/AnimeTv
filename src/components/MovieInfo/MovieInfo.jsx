@@ -69,7 +69,7 @@ function MovieInfo({ data }) {
                     <span
                         className={clsx(
                             'status absolute top-1 left-1 z-[100] px-1.5 py-0.5 text-[0.6875rem] text-white',
-                            'rounded-tl-[0.5rem] rounded-tr-[0.1875rem] rounded-br-[0.5rem]',
+                            'z-[1000] rounded-tl-[0.5rem] rounded-tr-[0.1875rem] rounded-br-[0.5rem]',
                         )}
                     >
                         Vietsub - FHD
@@ -84,15 +84,15 @@ function MovieInfo({ data }) {
 
                     <span
                         className={clsx(
-                            'btn-danger absolute right-0.5 bottom-14',
+                            'btn-danger absolute right-0.5 bottom-14 z-[1000]',
                             'rounded-[0.1875rem] p-0.5 px-1 text-[0.6875rem] text-white',
                         )}
                     >
-                        Vote {data.vote_count}
+                        {data.popularity} lượt xem
                     </span>
 
                     {/* info */}
-                    <div className="bg-blur absolute bottom-0 w-full overflow-hidden px-2.5 pt-2 pb-1">
+                    <div className="bg-blur absolute bottom-0 z-[1000] w-full overflow-hidden px-2.5 pt-2 pb-1">
                         <h3 className="mb-1 line-clamp-1 overflow-hidden leading-5 text-ellipsis whitespace-normal text-white">
                             {data.title || data.name}
                         </h3>

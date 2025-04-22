@@ -12,8 +12,6 @@ export const nation = async (with_genres = '', page = 1, language = 'vi', with_o
             },
         });
 
-        console.log(res.results);
-
         return res.results;
     } catch (error) {
         console.log(error);

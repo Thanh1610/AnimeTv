@@ -9,6 +9,7 @@ const routes = {
     china: '/quoc-gia/trung-quoc/page/:page',
     japan: '/quoc-gia/nhat-ban/page/:page',
     europeAmerica: '/quoc-gia/au-my/page/:page',
+    filter: '/filter-results',
 };
 
 export default routes;
