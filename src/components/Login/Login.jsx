@@ -68,10 +68,7 @@ function Login({ onClose, onLoginSuccess }) {
                 {/* header */}
                 <div className="flex items-center justify-between border-b-1 border-[#e5e5e5] px-3.5 py-2">
                     <p>{registerOn ? 'Đăng Kí' : 'Đăng Nhập'}</p>
-                    <div
-                        className="cursor-pointer text-[1.3125rem] font-black hover:text-white"
-                        onClick={handleClose}
-                    >
+                    <div className="cursor-pointer text-[1.3125rem] font-black hover:text-white" onClick={handleClose}>
                         &times;
                     </div>
                 </div>
@@ -158,15 +155,12 @@ function Login({ onClose, onLoginSuccess }) {
                     <button
                         onClick={handleClose}
                         type="button"
-                        className="btn hover:bg-text !rounded-[0.25rem] bg-white text-black"
+                        className="btn hover:bg-text rounded-[0.25rem] bg-white text-black"
                     >
                         Đóng
                     </button>
 
-                    <button
-                        type="submit"
-                        className={clsx('btn btn-danger w-[100px] !rounded-[0.25rem] text-white')}
-                    >
+                    <button type="submit" className={clsx('btn btn-danger w-[100px] rounded-[0.25rem] text-white')}>
                         {registerOn ? 'Đăng ký' : 'Đăng nhập'}
                     </button>
                 </div>

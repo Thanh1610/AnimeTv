@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import React from 'react';
 import Tippy from '@tippyjs/react/headless';
+import { useNavigate } from 'react-router';
+import { toSlug } from '@/utils/request';
 
 import { countryCodes } from '@/config/countryCodes';
 import WrapperMovie from '@/components/Popper';
@@ -11,8 +13,20 @@ import WrapperMovie from '@/components/Popper';
 function MovieInfo({ data }) {
     const [isHover, setIsHover] = useState(false);
     const countryMap = Object.fromEntries(countryCodes.map(({ code, name }) => [code, name]));
-
     const countries = data.origin_country?.map((code) => countryMap[code] || code).join(', ');
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        const name = data.title || data.name;
+        const id = data.id;
+        const type = data.media_type ? data.media_type : data.title ? 'movie' : 'tv';
+        const slug = toSlug(name);
+
+        //chuyển hướng
+        navigate(`/${slug}`, {
+            state: { name, id, type },
+        });
+    };
 
     return (
         <>
@@ -44,9 +58,7 @@ function MovieInfo({ data }) {
                                     </div>
                                     <div className="my-1 text-[#545454]">
                                         Đánh Giá:{' '}
-                                        <span className="text-[#337ab7]">
-                                            {data?.vote_average?.toFixed(2)} / 10
-                                        </span>
+                                        <span className="text-[#337ab7]">{data?.vote_average?.toFixed(2)} / 10</span>
                                     </div>
                                     <div className="my-1 text-[#545454]">
                                         {countries ? 'Quốc Gia:' : 'Ngôn Ngữ Gốc:'}{' '}
@@ -64,6 +76,7 @@ function MovieInfo({ data }) {
                     className="group relative flex h-[260px] w-[180px] flex-shrink-0 overflow-hidden rounded-[0.625rem]"
                     onMouseEnter={() => setIsHover(true)}
                     onMouseLeave={() => setIsHover(false)}
+                    onClick={handleClick}
                 >
                     {/* status */}
                     <span

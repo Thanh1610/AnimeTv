@@ -7,6 +7,7 @@ import GenrePage from '@/pages/GenrePage';
 import NationPage from '@/pages/NationPage';
 import { euroAmericaCountries } from '@/config/countryCodes';
 import FilterResultsPage from '@/pages/FilterResultsPage';
+import DetailPage from '@/pages/DetailPage';
 
 const europeAmerica = euroAmericaCountries.join('|');
 
@@ -39,6 +40,8 @@ export const publicRoutes = [
     { path: config.routes.search, component: Search },
     { path: config.routes.account, component: Account },
     { path: config.routes.changePassword, component: ChangePassword },
+    { path: config.routes.filter, component: FilterResultsPage },
+    { path: config.routes.detail, component: DetailPage },
 
     ...genres.map((genre) => ({
         path: genre.path,
@@ -49,10 +52,6 @@ export const publicRoutes = [
         path: nation.path,
         component: () => <NationPage title={nation.title} nation={nation.with_origin_country} />,
     })),
-    {
-        path: config.routes.filter,
-        component: FilterResultsPage,
-    },
 ];
 
 export const privateRoutes = [];

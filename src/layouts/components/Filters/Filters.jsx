@@ -49,8 +49,7 @@ function Filters({ onApplyFilters }) {
             <div className="border-b-1 border-[#1d2731]">
                 <div className="flex items-center justify-between p-3.5">
                     <div>
-                        MoviXTv | Phim Moi | Phim Hay | Xem Phim Online | Phim China | Xem hoạt Hình Trung
-                        Quốc | hh3d
+                        MoviXTv | Phim Moi | Phim Hay | Xem Phim Online | Phim China | Xem hoạt Hình Trung Quốc | hh3d
                     </div>
                     <div className="text-[#7aa6ce]" onClick={() => setOpenFilters((prev) => !prev)}>
                         Lọc phim
@@ -75,7 +74,7 @@ function Filters({ onApplyFilters }) {
                             </select>
                         ))}
 
-                        <button className="btn btn-danger w-40 text-white" onClick={applyFilters}>
+                        <button className="btn btn-danger w-40 rounded-[20px] text-white" onClick={applyFilters}>
                             Lọc Phim
                         </button>
                     </div>

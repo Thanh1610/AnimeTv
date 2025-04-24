@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router';
+import { toSlug } from '@/utils/request';
 
 function Search() {
     const [isFocused, setIsFocused] = useState(false);
@@ -29,10 +30,10 @@ function Search() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('entered!');
 
         if (searchValue !== '') {
-            navigate(`/search/${encodeURIComponent(searchValue.replace(/ /g, '+'))}`);
+            const slug = toSlug(searchValue);
+            navigate(`/search/${slug}`);
         }
     };
 

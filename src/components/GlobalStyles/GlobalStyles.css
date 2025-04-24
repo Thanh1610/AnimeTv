@@ -4,13 +4,37 @@
 
 @theme {
     --font-family: 'IBM Plex Sans', sans-serif;
+    --scrollbar: rgba(255, 255, 255, 0.3);
+    --header-height: 4.63rem;
+    --content-width: 73.125rem;
 
+    /* colors */
     --color-primary: #1b2d3c;
     --color-boder: #273e52;
     --color-text: #a5a5a5;
+    --color-danger-start: #c02425;
+    --color-danger-middle: #f0cb35;
+    --color-danger-end: #c02425;
+    --color-status-start: #ff00cc;
+    --color-status-end: #333399;
+    --color-post-start: #151d25;
+    --color-post-end: #060808;
 
-    --scrollbar: rgba(255, 255, 255, 0.3);
-    --header-height: 4.63rem;
+    /* Gradients */
+    --gradient-danger: linear-gradient(
+        to right,
+        var(--color-danger-start) 0%,
+        var(--color-danger-middle) 51%,
+        var(--color-danger-end) 100%
+    );
+    --gradient-status: linear-gradient(
+        to right,
+        var(--color-status-start) 0%,
+        var(--color-status-end) 51%,
+        var(--color-status-start) 100%
+    );
+    --gradient-post: linear-gradient(to right, var(--color-post-start) 0%, transparent 51%, var(--color-post-end) 100%);
+    --gradient-episode: linear-gradient(to right, #25aae1, #043ea5, #04befe, #3f86ed);
 }
 
 * {

@@ -2,7 +2,7 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useParams, useNavigate } from 'react-router';
 
-function Pagination({ totalPages = 20 }) {
+function Pagination({ totalPages = '20' }) {
     const visibleCount = 5;
     const { page } = useParams();
     const navigate = useNavigate();
@@ -26,11 +26,10 @@ function Pagination({ totalPages = 20 }) {
         }
     };
 
-    const btnStyles = `btn box-shadow text-shadow !rounded-[4px] 
+    const btnStyles = `btn box-shadow text-shadow rounded-[4px] 
     bg-[#1b364e] text-[13px] text-white hover:bg-[#396792] w-[40px]`;
 
-    const adjustedStart =
-        currentPage > totalPages - visibleCount + 1 ? totalPages - visibleCount + 1 : currentPage;
+    const adjustedStart = currentPage > totalPages - visibleCount + 1 ? totalPages - visibleCount + 1 : currentPage;
 
     const pages = [];
     for (let i = adjustedStart; i < adjustedStart + visibleCount && i <= totalPages; i++) {

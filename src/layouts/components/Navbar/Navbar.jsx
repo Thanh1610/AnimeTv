@@ -79,10 +79,7 @@ function Navbar() {
                             <Link to={config.routes.japan.replace(':page', '1')} className={linkStyles}>
                                 Nhật Bản
                             </Link>
-                            <Link
-                                to={config.routes.europeAmerica.replace(':page', '1')}
-                                className={linkStyles}
-                            >
+                            <Link to={config.routes.europeAmerica.replace(':page', '1')} className={linkStyles}>
                                 Âu Mỹ
                             </Link>
                         </div>

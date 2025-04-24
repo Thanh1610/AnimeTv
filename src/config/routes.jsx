@@ -10,6 +10,7 @@ const routes = {
     japan: '/quoc-gia/nhat-ban/page/:page',
     europeAmerica: '/quoc-gia/au-my/page/:page',
     filter: '/filter-results',
+    detail: '/:name',
 };
 
 export default routes;

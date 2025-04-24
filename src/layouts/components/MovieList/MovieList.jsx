@@ -83,9 +83,7 @@ function MovieList({
             return movies.map((item) => <MovieInfo data={item} key={item.id} />);
         }
         return (
-            <div className="w-full text-center text-gray-500">
-                Rất tiếc, không có nội dung nào trùng khớp yêu cầu.
-            </div>
+            <div className="w-full text-center text-gray-500">Rất tiếc, không có nội dung nào trùng khớp yêu cầu.</div>
         );
     };
 

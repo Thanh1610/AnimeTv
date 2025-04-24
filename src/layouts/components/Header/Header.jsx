@@ -63,7 +63,7 @@ function Header() {
                     <div>
                         <button
                             className={clsx(
-                                'text-shadow box-shadow btn mr-4 px-1 py-4 text-white',
+                                'text-shadow box-shadow btn mr-4 rounded-[20px] px-1 py-4 text-white',
                                 'bg-linear-to-r from-[#063458] to-[#1c5e94]',
                                 'hover:bg-[#337ab7] hover:from-transparent hover:to-transparent',
                             )}
