@@ -22,6 +22,7 @@ function EpisodeList({ data }) {
             </li>,
         );
     }
+
     return (
         <div>
             <div className="mt-3.5 mb-2.5">

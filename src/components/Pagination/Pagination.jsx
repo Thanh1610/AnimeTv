@@ -7,22 +7,23 @@ function Pagination({ totalPages = '20' }) {
     const { page } = useParams();
     const navigate = useNavigate();
     const currentPage = page ? parseInt(page, 10) : 1;
+    const basePath = location.pathname.replace(/\/page\/\d+$/, '');
 
     const handleNext = () => {
         if (currentPage < totalPages) {
-            navigate(`/the-loai/hanh-dong/page/${currentPage + 1}`);
+            navigate(`${basePath}/page/${currentPage + 1}`);
         }
     };
 
     const handlePrev = () => {
         if (currentPage > 1) {
-            navigate(`/the-loai/hanh-dong/page/${currentPage - 1}`);
+            navigate(`${basePath}/page/${currentPage - 1}`);
         }
     };
 
     const handleClick = (pageNumber) => {
         if (pageNumber !== currentPage) {
-            navigate(`/the-loai/hanh-dong/page/${pageNumber}`);
+            navigate(`${basePath}/page/${pageNumber}`);
         }
     };
 

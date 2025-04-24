@@ -3,13 +3,27 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router';
 import { useState } from 'react';
-
 import TippyHeadless from '@tippyjs/react/headless';
 import clsx from 'clsx';
+import { euroAmericaCountries } from '@/config/countryCodes';
 
 function Navbar() {
     const [openGenre, setOpenGenre] = useState(false);
     const [openNation, setOpenNation] = useState(false);
+
+    const europeAmerica = euroAmericaCountries.join('|');
+
+    const genres = [
+        { name: 'Phiêu Lưu', slug: 'phieu-luu', id: '12' },
+        { name: 'Giả Tưởng', slug: 'gia-tuong', id: '14' },
+        { name: 'Hành Động', slug: 'hanh-dong', id: '28' },
+    ];
+
+    const nations = [
+        { name: 'Trung Quốc', slug: 'china', iso: 'CN' },
+        { name: 'Nhật Bản', slug: 'japan', iso: 'JP' },
+        { name: 'Âu Mỹ', slug: 'europeAmerica', iso: europeAmerica },
+    ];
 
     const linkStyles = `block min-w-40 px-3.5 py-2 text-left text-white hover:text-[#6cbbff] transition-all duration-500`;
     return (
@@ -34,15 +48,18 @@ function Navbar() {
                             {...attrs}
                             className="flex w-[37.5rem] items-center justify-between rounded-[0.25rem] bg-[#1f3d58]"
                         >
-                            <Link to={config.routes.adventure.replace(':page', '1')} className={linkStyles}>
-                                Phiêu Lưu
-                            </Link>
-                            <Link to={config.routes.fantasy.replace(':page', '1')} className={linkStyles}>
-                                Giả Tưởng
-                            </Link>
-                            <Link to={config.routes.actionGenre.replace(':page', '1')} className={linkStyles}>
-                                Hành Động
-                            </Link>
+                            {genres.map(({ name, slug, id }) => (
+                                <Link
+                                    key={id}
+                                    to={config.routes.genres
+                                        .replace(':genre', slug)
+                                        .replace(':id', id)
+                                        .replace(':page', '1')}
+                                    className={linkStyles}
+                                >
+                                    {name}
+                                </Link>
+                            ))}
                         </div>
                     )}
                 >
@@ -73,15 +90,18 @@ function Navbar() {
                             {...attrs}
                             className="flex w-[37.5rem] items-center justify-between rounded-[0.25rem] bg-[#1f3d58]"
                         >
-                            <Link to={config.routes.china.replace(':page', '1')} className={linkStyles}>
-                                Trung Quốc
-                            </Link>
-                            <Link to={config.routes.japan.replace(':page', '1')} className={linkStyles}>
-                                Nhật Bản
-                            </Link>
-                            <Link to={config.routes.europeAmerica.replace(':page', '1')} className={linkStyles}>
-                                Âu Mỹ
-                            </Link>
+                            {nations.map(({ name, slug, iso }) => (
+                                <Link
+                                    key={iso}
+                                    to={config.routes.nation
+                                        .replace(':nation', slug)
+                                        .replace(':iso', iso)
+                                        .replace(':page', '1')}
+                                    className={linkStyles}
+                                >
+                                    {name}
+                                </Link>
+                            ))}
                         </div>
                     )}
                 >

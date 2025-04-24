@@ -1,7 +1,23 @@
 import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { toSlug } from '@/utils/request';
+import { useNavigate } from 'react-router';
 
 function DetailInfo({ data }) {
+    const navigate = useNavigate();
+    const handleNationClick = (country) => {
+        if (!country) return;
+        const nationName = toSlug(country?.name);
+        const iso = country?.iso_3166_1;
+        navigate(`/quoc-gia/${nationName}/${iso}/page/1`);
+    };
+
+    const handleGenreClick = (genre) => {
+        if (!genre) return;
+        const genreName = toSlug(genre?.name);
+        navigate(`/the-loai/${genreName}/${genre.id}/page/1`);
+    };
+
     return (
         <>
             <h1 className="mt-5 mb-2.5 text-[20px] font-bold">{data.name || data.title}</h1>
@@ -27,7 +43,10 @@ function DetailInfo({ data }) {
             </p>
             <p>
                 <span>Quốc gia:</span>
-                <span className="ml-1 text-[#82b0da] hover:text-[#e1effb]">
+                <span
+                    className="ml-1 text-[#82b0da] hover:text-[#e1effb]"
+                    onClick={() => handleNationClick(data?.production_countries[0])}
+                >
                     {(data.production_countries && data.production_countries.map((country) => country.name)) ||
                         'Không xác định'}
                 </span>
@@ -37,7 +56,11 @@ function DetailInfo({ data }) {
                 <span>Thể loại:</span>
                 {data.genres &&
                     data.genres.map((genre, index) => (
-                        <span className="text-[#82b0da] hover:text-[#e1effb]" key={genre.id}>
+                        <span
+                            onClick={() => handleGenreClick(genre)}
+                            className="text-[#82b0da] hover:text-[#e1effb]"
+                            key={genre.id}
+                        >
                             {genre.name}
                             {index < data.genres.length - 1 && ', '}
                         </span>

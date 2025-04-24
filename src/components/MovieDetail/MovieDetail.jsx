@@ -6,13 +6,30 @@ import EpisodeList from './components/EpisodeList';
 
 import MovieList from '@/layouts/components/MovieList';
 import * as filtersServices from '@/apiServices/filtersServices';
+import Login from '../Login';
+import { useNavigate } from 'react-router';
+import { toSlug } from '@/utils/request';
 
 function MovieDetail({ data }) {
     const [hideEpisode, setHideEpisode] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
+
+    const navigate = useNavigate();
+    const slug = toSlug(data?.name || data?.title);
+    const handleEpisodeClick = () => {
+        if (!data) return;
+        navigate(`/${slug}/${data.id}`, {
+            state: {
+                id: data.id,
+                type: data.first_air_date ? 'tv' : 'movie',
+            },
+        });
+    };
 
     const sectionWrapper = 'mb-2.5 rounded-[4px] bg-[#101821] p-3.5';
     const sectionTitle = 'danger-text text-[1rem] font-medium uppercase';
     const sectionContent = 'border-t-1 border-[#1d2731] pt-2.5';
+    const withGenres = data?.genres?.map((genre) => genre.id).join('|');
 
     return (
         <div className="flex flex-col px-3.5">
@@ -34,7 +51,7 @@ function MovieDetail({ data }) {
                             <span className="ml-1">Tập phim</span>
                         </div>
 
-                        <div className="btn btn-play w-[45%] rounded-[6px]">
+                        <div className="btn btn-play w-[45%] rounded-[6px]" onClick={() => handleEpisodeClick()}>
                             <FontAwesomeIcon icon={faCaretRight} />
                             <span className="ml-1">Xem phim</span>
                         </div>
@@ -56,14 +73,19 @@ function MovieDetail({ data }) {
             <div className={sectionWrapper}>
                 <span className={sectionTitle}>Bình Luận (0)</span>
                 <div className={sectionContent}>
-                    Vui lòng <span className="cursor-pointer text-[#d98a5e]">đăng nhập</span> để bình luận
+                    Vui lòng{' '}
+                    <span onClick={() => setOpenModal(true)} className="cursor-pointer text-[#d98a5e]">
+                        đăng nhập
+                    </span>{' '}
+                    để bình luận
                 </div>
             </div>
+            {openModal && <Login onClose={() => setOpenModal(false)} />}
 
             <MovieList
                 title="Phim Liên Quan"
                 fetchMovies={filtersServices.filters}
-                withGenres={data?.genres?.map((genre) => genre.id).join(',')}
+                withGenres={`${withGenres}`}
                 limit={12}
                 seeAll
             />
