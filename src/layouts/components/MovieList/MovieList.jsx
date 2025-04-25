@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 import MovieInfo from '@/components/MovieInfo';
 import Pagination from '@/components/Pagination';
+import { useNavigate } from 'react-router';
+import config from '@/config';
 
 function MovieList({
     title,
@@ -18,9 +20,11 @@ function MovieList({
     nation,
     pagination,
     currentPage,
+    relate,
 }) {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         let isMounted = true;
@@ -87,6 +91,19 @@ function MovieList({
         );
     };
 
+    const handleSeeAllClick = () => {
+        console.log(relate?.nation, relate?.iso);
+
+        if (relate) {
+            navigate(
+                config.routes.nation
+                    .replace(':nation', relate.nation)
+                    .replace(':iso', relate.iso)
+                    .replace(':page', '1'),
+            );
+        }
+    };
+
     return (
         <div className="px-3.5 pt-2.5 pb-5">
             {/* title */}
@@ -101,7 +118,7 @@ function MovieList({
                     <div className="flex flex-wrap gap-3">{renderMovies()}</div>
                 )}
                 {seeAll && (
-                    <div className="mr-7 flex justify-end">
+                    <div onClick={handleSeeAllClick} className="mr-7 flex justify-end">
                         <div className="see-all my-[5px] w-[30%] rounded-[20px] py-1 pr-3.5 !text-right text-white">
                             Xem tất cả
                         </div>

@@ -64,3 +64,23 @@
         transform: rotate(0) scale(1) skew(1deg);
     }
 }
+
+@keyframes expandHeight {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+    50% {
+        height: 50%;
+        opacity: 0.5;
+    }
+    100% {
+        height: auto;
+        opacity: 1;
+    }
+}
+
+.expand-animation {
+    animation: expandHeight 0.5s ease-out forwards;
+    overflow: hidden;
+}

@@ -3,16 +3,18 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 
-function Rating({ data }) {
+function Rating({ data, className }) {
     const [hoverStart, setHoverStart] = useState(-1);
     const [Evaluate, setEvaluate] = useState(0);
 
     return (
         <>
-            <div className="flex items-center">
-                <FontAwesomeIcon icon={faStar} className="text-3xl text-[#fdae01]" />
-                <span className="text-[21px] text-white">{data.vote_average?.toFixed(2)} / 10</span>
-                <span className="ml-1">({data.vote_count} lượt)</span>
+            <div className={className}>
+                <div>
+                    <FontAwesomeIcon icon={faStar} className="text-3xl text-[#fdae01]" />
+                    <span className="ml-1 text-[21px] text-white">{data.vote_average?.toFixed(2)} / 10</span>
+                    <span className="ml-1">({data.vote_count} lượt)</span>
+                </div>
                 <div className="ml-2 flex text-[18px]">
                     {[...Array(10)].map((_, index) => (
                         <FontAwesomeIcon

@@ -10,6 +10,7 @@ import { useLocation } from 'react-router';
 import Watch from './components';
 
 function DetailPage() {
+    const [showLayout, setShowLayout] = useState(false);
     const [info, setInfo] = useState({});
     const { applyFilters } = useFilters();
     const location = useLocation();
@@ -30,10 +31,11 @@ function DetailPage() {
     return (
         <div className="bg-[#151d25]">
             <Filters onApplyFilters={applyFilters} />
+            {showLayout && <div className="fixed top-0 left-0 z-[100] h-screen w-full bg-black"></div>}
 
             <div className="flex">
                 <div className="w-[70%]">
-                    <Watch data={info} />
+                    <Watch data={info} showLayout={() => setShowLayout((prev) => !prev)} />
                 </div>
                 <div className="w-[30%]">
                     <MovieListSmall

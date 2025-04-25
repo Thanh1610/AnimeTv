@@ -1,7 +1,7 @@
 import { faBarsProgress } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function EpisodeList({ data }) {
+function EpisodeList({ data, handleEpisodeClick }) {
     const episodeCount = data?.last_episode_to_air?.episode_number || 0;
     const episodeList = [];
     const episodeStyles = `btn rounded-[4px] bg-[#1f2c3e] transition-all duration-[600]
@@ -10,14 +10,14 @@ function EpisodeList({ data }) {
     if (episodeCount > 0) {
         for (let i = episodeCount; i >= 1; i--) {
             episodeList.push(
-                <li key={i} className={episodeStyles}>
+                <li key={i} className={episodeStyles} onClick={handleEpisodeClick}>
                     {i}
                 </li>,
             );
         }
     } else {
         episodeList.push(
-            <li key="full" className={episodeStyles}>
+            <li key="full" className={episodeStyles} onClick={handleEpisodeClick}>
                 Full
             </li>,
         );

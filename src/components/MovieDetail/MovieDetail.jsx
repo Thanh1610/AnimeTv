@@ -35,7 +35,7 @@ function MovieDetail({ data }) {
         <div className="flex flex-col px-3.5">
             <div className="mb-5 flex w-full text-[0.75rem]">
                 <div className="relative h-[331px] w-[30%] overflow-hidden rounded-lg">
-                    <Bookmark />
+                    <Bookmark className={'absolute mt-1.5 ml-1'} />
                     <img
                         className="h-full w-full object-cover"
                         src={`${import.meta.env.VITE_IMG_URL}${data.poster_path}`}
@@ -59,11 +59,11 @@ function MovieDetail({ data }) {
                 </div>
                 <div className="flex w-[70%] flex-col justify-items-start gap-2.5 px-3.5">
                     <DetailInfo data={data} />
-                    <Rating data={data} />
+                    <Rating data={data} className={'flex items-center'} />
                 </div>
             </div>
 
-            {hideEpisode && <EpisodeList data={data} hideEpisode={hideEpisode} />}
+            {hideEpisode && <EpisodeList data={data} handleEpisodeClick={handleEpisodeClick} />}
 
             <div className={sectionWrapper}>
                 <span className={sectionTitle}>Nội Dung Phim</span>
@@ -87,7 +87,6 @@ function MovieDetail({ data }) {
                 fetchMovies={filtersServices.filters}
                 withGenres={`${withGenres}`}
                 limit={12}
-                seeAll
             />
         </div>
     );

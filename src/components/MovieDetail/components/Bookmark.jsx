@@ -1,5 +1,7 @@
+import clsx from 'clsx';
 import { useState } from 'react';
-function Bookmark() {
+
+function Bookmark({ className }) {
     const [bookmarkNumber, setBookmarkNumber] = useState(1);
 
     const handleBookmarkClick = () => {
@@ -25,7 +27,7 @@ function Bookmark() {
                 backgroundSize: '45px',
                 backgroundRepeat: 'no-repeat',
             }}
-            className={'shake absolute mt-1.5 ml-1 h-[48px] w-[42px]'}
+            className={clsx('shake h-[48px] w-[42px]', className)}
             onClick={handleBookmarkClick}
             onMouseEnter={handleBookmarkHover}
             onMouseLeave={handleOnMouseLeave}

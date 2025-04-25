@@ -19,40 +19,29 @@ function Home() {
             <MovieList title="Phim Đề Cử" fetchMovies={topRateServices.topRate} limit={6} />
             <div className="flex w-full gap-2 px-3.5">
                 <div className="w-[50%]">
-                    <MovieListSmall
-                        title="Phim Lẻ Mới Phát Hành"
-                        fetchMovies={newMovieServices.newMovie}
-                        limit={3}
-                    />
+                    <MovieListSmall title="Phim Lẻ Mới Phát Hành" fetchMovies={newMovieServices.newMovie} limit={3} />
                 </div>
                 <div className="w-[50%]">
-                    <MovieListSmall
-                        title="Phim Bộ Mới Phát Hành"
-                        fetchMovies={newTVServices.newTV}
-                        limit={3}
-                    />
+                    <MovieListSmall title="Phim Bộ Mới Phát Hành" fetchMovies={newTVServices.newTV} limit={3} />
                 </div>
             </div>
             <div className="flex">
                 <div className="w-[70%]">
-                    <MovieList
-                        title="Phim chiếu rạp"
-                        fetchMovies={nowPlayingServices.nowPlaying}
-                        limit={12}
-                        seeAll
-                    />
+                    <MovieList title="Phim chiếu rạp" fetchMovies={nowPlayingServices.nowPlaying} limit={12} seeAll />
 
                     <MovieList
                         title="Phim anime Nhật Bản"
                         fetchMovies={animeServices.anime}
                         limit={12}
                         seeAll
+                        relate={{ nation: 'japan', iso: 'JP' }}
                     />
                     <MovieList
                         title="Phim hoạt hình Trung Quốc"
                         fetchMovies={chinaAnimationServices.chinaAnimation}
                         limit={12}
                         seeAll
+                        relate={{ nation: 'china', iso: 'CN' }}
                     />
                 </div>
                 <div className="w-[30%]">
