@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 function Bookmark({ className }) {
     const [bookmarkNumber, setBookmarkNumber] = useState(1);
 
     const handleBookmarkClick = () => {
         setBookmarkNumber((prev) => (prev === 1 ? 2 : 1));
-        alert('Vui lòng đăng nhập để thực hiện chức năng này!');
+        toast.warning('Vui lòng đăng nhập để thực hiện chức năng này!');
     };
 
     const handleBookmarkHover = () => {

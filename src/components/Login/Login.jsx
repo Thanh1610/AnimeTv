@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 function Login({ onClose, onLoginSuccess }) {
     const [isVisible, setIsVisible] = useState(true);
@@ -32,26 +33,27 @@ function Login({ onClose, onLoginSuccess }) {
 
         if (registerOn) {
             if (password !== confirmPassword) {
-                alert('Mật khẩu không khớp!');
+                toast.error('Mật khẩu không khớp!');
                 return;
             }
             const user = { name, email, password };
             localStorage.setItem('user', JSON.stringify(user));
-            alert('Đăng kí thành công !');
+            onLoginSuccess(user);
+            toast.success('Đăng kí thành công !');
             handleClose();
         } else {
             const storedUser = JSON.parse(localStorage.getItem('user'));
             if (storedUser && storedUser.email === email && storedUser.password === password) {
-                alert('Đăng Nhập thành công !');
-                onLoginSuccess(storedUser.name);
+                toast.success('Đăng Nhập thành công !');
+                onLoginSuccess(storedUser);
                 handleClose();
             } else {
-                alert('Email hoặc mật khẩu không đúng!');
+                toast.error('Email hoặc mật khẩu không đúng!');
             }
         }
     };
 
-    const lableStyles = `mb-1 inline-block max-w-full font-semibold`;
+    const lablelStyles = `mb-1 inline-block max-w-full font-semibold`;
     const inputStyles = `w-full rounded-[0.25rem] border-1 border-[#66afe9]
      bg-white px-3 py-1.5 text-black`;
     return (
@@ -77,7 +79,7 @@ function Login({ onClose, onLoginSuccess }) {
                 <div className="p-3.5">
                     {registerOn && (
                         <div className="mb-3.5">
-                            <label className={lableStyles} htmlFor="name">
+                            <label className={lablelStyles} htmlFor="name">
                                 Tên :
                             </label>
                             <input
@@ -90,7 +92,7 @@ function Login({ onClose, onLoginSuccess }) {
                         </div>
                     )}
                     <div className="mb-3.5">
-                        <label className={lableStyles} htmlFor="email">
+                        <label className={lablelStyles} htmlFor="email">
                             Email :
                         </label>
                         <input
@@ -103,7 +105,7 @@ function Login({ onClose, onLoginSuccess }) {
                     </div>
 
                     <div className="mb-3.5">
-                        <label className={lableStyles} htmlFor="password">
+                        <label className={lablelStyles} htmlFor="password">
                             Mật khẩu :
                         </label>
                         <input
@@ -117,7 +119,7 @@ function Login({ onClose, onLoginSuccess }) {
 
                     {registerOn && (
                         <div className="mb-3.5">
-                            <label className={lableStyles} htmlFor="password1">
+                            <label className={lablelStyles} htmlFor="password1">
                                 Nhập lại mật khẩu: :
                             </label>
                             <input
@@ -132,13 +134,13 @@ function Login({ onClose, onLoginSuccess }) {
 
                     {!registerOn && (
                         <div className="mb-3.5 flex items-center gap-3">
-                            <div className={lableStyles}>Ghi nhớ đăng nhập :</div>
+                            <div className={lablelStyles}>Ghi nhớ đăng nhập :</div>
                             <input type="checkbox" />
                         </div>
                     )}
 
                     <div className="mb-3.5 flex items-center gap-3">
-                        <div className={lableStyles}>
+                        <div className={lablelStyles}>
                             {registerOn ? 'Bạn đã có tài khoản?' : 'Bạn chưa có tài khoản?'}
                         </div>
                         <div

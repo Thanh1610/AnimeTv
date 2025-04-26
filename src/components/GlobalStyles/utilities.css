@@ -3,7 +3,7 @@
 }
 
 .btn {
-    @apply inline-block cursor-pointer touch-manipulation;
+    @apply cursor-pointer touch-manipulation;
     @apply px-[12px] py-[6px];
     @apply text-center align-middle font-normal whitespace-nowrap;
     @apply transition-all duration-500 select-none;

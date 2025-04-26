@@ -4,7 +4,6 @@ export const watch = async (id, type = 'movie') => {
     if (!id) {
         return null;
     }
-    console.log(id, type);
 
     const validTypes = type || 'tv';
     try {
@@ -16,7 +15,6 @@ export const watch = async (id, type = 'movie') => {
                 append_to_response: 'videos',
             },
         });
-        console.log(res);
 
         return res;
     } catch (error) {

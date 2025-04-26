@@ -12,8 +12,6 @@ export const chinaAnimation = async (
     first_air_date_year = '',
     language = 'vi',
 ) => {
-    console.log(`language: ${language} page: ${page}`);
-
     try {
         const res = await request.get('discover/tv', {
             params: {
@@ -31,7 +29,6 @@ export const chinaAnimation = async (
                 first_air_date_year,
             },
         });
-        console.log(res.results);
 
         return res.results;
     } catch (error) {

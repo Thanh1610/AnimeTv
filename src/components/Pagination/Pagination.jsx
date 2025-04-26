@@ -28,7 +28,7 @@ function Pagination({ totalPages = '20' }) {
     };
 
     const btnStyles = `btn box-shadow text-shadow rounded-[4px] 
-    bg-[#1b364e] text-[13px] text-white hover:bg-[#396792] w-[40px]`;
+    bg-[#1b364e] text-[11px] sm:text-[13px] text-white hover:bg-[#396792] w-[32px] sm:w-[40px] h-[32px] sm:h-[40px]`;
 
     const adjustedStart = currentPage > totalPages - visibleCount + 1 ? totalPages - visibleCount + 1 : currentPage;
 
@@ -38,10 +38,10 @@ function Pagination({ totalPages = '20' }) {
     }
 
     return (
-        <div className="mt-5 flex w-full items-center justify-center gap-2">
+        <div className="mt-5 flex w-full items-center justify-center gap-1 sm:gap-2">
             {currentPage > 1 && (
                 <button className={btnStyles} onClick={handlePrev}>
-                    <FontAwesomeIcon icon={faAngleLeft} />
+                    <FontAwesomeIcon icon={faAngleLeft} className="text-xs sm:text-sm" />
                 </button>
             )}
 
@@ -57,7 +57,7 @@ function Pagination({ totalPages = '20' }) {
 
             {currentPage < totalPages && (
                 <button className={btnStyles} onClick={handleNext}>
-                    <FontAwesomeIcon icon={faAngleRight} />
+                    <FontAwesomeIcon icon={faAngleRight} className="text-xs sm:text-sm" />
                 </button>
             )}
         </div>

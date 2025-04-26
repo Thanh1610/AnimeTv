@@ -1,10 +1,11 @@
 import MovieListSmall from '@/layouts/components/MovieListSmall';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEyeSlash, faEye } from '@fortawesome/free-regular-svg-icons';
+import { toast } from 'react-toastify';
 
 import * as animationTvServices from '@/apiServices/animationTvServices';
 import * as animationMovieServices from '@/apiServices/animationMovieServices';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEyeSlash, faEye } from '@fortawesome/free-regular-svg-icons';
 
 function AccountSetting({ title, update }) {
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -23,14 +24,14 @@ function AccountSetting({ title, update }) {
             updatedUser.name = name;
         } else {
             if (password !== confirmPassword) {
-                alert('Mật khẩu không khớp!');
+                toast.error('Mật khẩu không khớp!');
                 return;
             }
             updatedUser.password = password;
         }
 
         localStorage.setItem('user', JSON.stringify(updatedUser));
-        alert(update ? 'Cập nhật thành công!' : 'Đổi mật khẩu thành công!');
+        toast.success(update ? 'Cập nhật thành công!' : 'Đổi mật khẩu thành công!');
         window.location.reload();
     };
 

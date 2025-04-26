@@ -8,6 +8,7 @@ import { toSlug } from '@/utils/request';
 function Search() {
     const [isFocused, setIsFocused] = useState(false);
     const [searchValue, setSearchValue] = useState('');
+
     const inputRef = useRef();
     const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ function Search() {
     return (
         <form
             className={clsx(
-                'text-text/10 h-[2.125rem] w-[27.625rem] bg-[#12171b6e]',
+                'text-text/10 h-[2.125rem] w-full bg-[#12171b6e]',
                 'flex items-center justify-between',
                 'overflow-hidden border-1 border-[var(--border)]',
                 'transition-all duration-300 ease-in-out',
@@ -53,16 +54,18 @@ function Search() {
             <FontAwesomeIcon icon={faMagnifyingGlass} className="px-2 text-white" />
             <input
                 className="h-full w-full text-[#7aa6ce] caret-[#7aa6ce] transition"
-                placeholder="Tìm Kiếm Phim, Đạo diễn..."
+                placeholder="Tìm Kiếm Phim..."
                 type="text"
                 required
                 ref={inputRef}
                 value={searchValue}
                 onChange={handleChange}
             />
-            <div onClick={handleClear}>
-                <FontAwesomeIcon icon={faCircleXmark} className="px-2 text-white" />
-            </div>
+            {searchValue && (
+                <div role="button" aria-label="Xóa nội dung tìm kiếm" onClick={handleClear}>
+                    <FontAwesomeIcon icon={faCircleXmark} className="px-2 text-white" />
+                </div>
+            )}
         </form>
     );
 }

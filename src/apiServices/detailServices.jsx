@@ -14,7 +14,6 @@ export const detail = async (id, type = 'movie', language = 'vi') => {
                 language,
             },
         });
-        console.log(res);
 
         return res;
     } catch (error) {
