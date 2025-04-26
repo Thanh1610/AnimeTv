@@ -27,8 +27,13 @@ function Home() {
             </div>
             <div className="flex">
                 <div className="w-[70%]">
-                    <MovieList title="Phim chiếu rạp" fetchMovies={nowPlayingServices.nowPlaying} limit={12} seeAll />
-
+                    <MovieList
+                        title="Phim chiếu rạp"
+                        fetchMovies={nowPlayingServices.nowPlaying}
+                        limit={12}
+                        seeAll
+                        relate={{ nation: 'china', iso: 'CN' }}
+                    />
                     <MovieList
                         title="Phim anime Nhật Bản"
                         fetchMovies={animeServices.anime}

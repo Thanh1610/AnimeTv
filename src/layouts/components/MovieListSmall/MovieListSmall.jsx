@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
 import clsx from 'clsx';
 
-import config from '@/config';
+import { useNavigate } from 'react-router';
+import { toSlug } from '@/utils/request';
 
 function MovieList({ title, fetchMovies, limit }) {
     const [movies, setMovies] = useState([]);
     const [isHover, setIsHover] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -16,6 +17,18 @@ function MovieList({ title, fetchMovies, limit }) {
 
         fetchApi();
     }, [fetchMovies, limit]);
+
+    const handleClick = (item) => {
+        const name = item.title || item.name;
+        const id = item.id;
+        const type = item.media_type ? item.media_type : item.title ? 'movie' : 'tv';
+        const slug = toSlug(name);
+
+        //chuyển hướng
+        navigate(`/${slug}`, {
+            state: { name, id, type },
+        });
+    };
 
     return (
         <div className="px-3.5 pt-2.5 pb-5">
@@ -30,13 +43,12 @@ function MovieList({ title, fetchMovies, limit }) {
                 {movies.map((item) => (
                     <div
                         key={item.id}
-                        className={clsx(
-                            'post flex rounded-[0.25rem] border-b-1 border-[#1d2731] pt-2.5 pr-2.5',
-                        )}
+                        className={clsx('post flex rounded-[0.25rem] border-b-1 border-[#1d2731] pt-2.5 pr-2.5')}
                         onMouseEnter={() => setIsHover(item.id)}
                         onMouseLeave={() => setIsHover(null)}
+                        onClick={() => handleClick(item)}
                     >
-                        <Link to={config.routes.home} className="mr-4 block text-[717171]">
+                        <div className="mr-4 block text-[717171]">
                             <img
                                 src={`${import.meta.env.VITE_IMG_URL}${item.poster_path}`}
                                 alt=""
@@ -45,9 +57,9 @@ function MovieList({ title, fetchMovies, limit }) {
                                     isHover === item.id && 'scale-110 transition-transform duration-300',
                                 )}
                             />
-                        </Link>
+                        </div>
                         <div>
-                            <Link to={config.routes.home}>
+                            <div>
                                 <h3
                                     className={clsx(
                                         'mb-[5px] cursor-pointer leading-5 font-medium text-[#d8d8d8]',
@@ -69,7 +81,7 @@ function MovieList({ title, fetchMovies, limit }) {
                                         : 'N/A'}
                                     )
                                 </p>
-                            </Link>
+                            </div>
                             <p className="mt-[5px] text-[12px] text-[#e7ac32]">{item.vote_count} lượt xem</p>
                         </div>
                     </div>

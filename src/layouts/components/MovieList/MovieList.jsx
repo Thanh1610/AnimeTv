@@ -118,7 +118,7 @@ function MovieList({
                     <div className="flex flex-wrap gap-3">{renderMovies()}</div>
                 )}
                 {seeAll && (
-                    <div onClick={handleSeeAllClick} className="mr-7 flex justify-end">
+                    <div onClick={handleSeeAllClick} className="mr-7 flex cursor-pointer justify-end">
                         <div className="see-all my-[5px] w-[30%] rounded-[20px] py-1 pr-3.5 !text-right text-white">
                             Xem tất cả
                         </div>

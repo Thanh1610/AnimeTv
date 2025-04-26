@@ -51,7 +51,10 @@ function Filters({ onApplyFilters }) {
                     <div>
                         MoviXTv | Phim Moi | Phim Hay | Xem Phim Online | Phim China | Xem hoạt Hình Trung Quốc | hh3d
                     </div>
-                    <div className="text-[#7aa6ce]" onClick={() => setOpenFilters((prev) => !prev)}>
+                    <div
+                        className="cursor-pointer text-[#7aa6ce] select-none"
+                        onClick={() => setOpenFilters((prev) => !prev)}
+                    >
                         Lọc phim
                         <FontAwesomeIcon icon={faAngleDown} className="ml-2" />
                     </div>

@@ -70,7 +70,10 @@ function Navbar() {
                             openGenre ? 'bg-black text-[#ea8300]' : '',
                         )}
                     >
-                        <div className="px-2.5 py-3.5" onClick={() => setOpenGenre(true)}>
+                        <div
+                            className="cursor-pointer px-2.5 py-3.5 select-none"
+                            onClick={() => setOpenGenre((prev) => !prev)}
+                        >
                             Thể loại
                             <FontAwesomeIcon icon={faCaretDown} className="ml-1" />
                         </div>
@@ -112,7 +115,10 @@ function Navbar() {
                             openNation ? 'bg-black text-[#ea8300]' : '',
                         )}
                     >
-                        <div className="px-2.5 py-3.5" onClick={() => setOpenNation(true)}>
+                        <div
+                            className="cursor-pointer px-2.5 py-3.5 select-none"
+                            onClick={() => setOpenNation((prev) => !prev)}
+                        >
                             Quốc gia
                             <FontAwesomeIcon icon={faCaretDown} className="ml-1" />
                         </div>

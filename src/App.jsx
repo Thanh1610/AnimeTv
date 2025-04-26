@@ -3,10 +3,14 @@ import { Fragment } from 'react';
 
 import { publicRoutes } from '@/routes/routes';
 import MainLayout from '@/layouts/MainLayout';
+import ScrollToTop from '@/components/ScrollToTop';
+import ScrollToTopBtn from '@/components/ScrollToTopBtn';
 
 function App() {
     return (
         <Router>
+            <ScrollToTop />
+            <ScrollToTopBtn />
             <div>
                 <Routes>
                     {publicRoutes.map((route) => {
