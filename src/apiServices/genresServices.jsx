@@ -17,5 +17,3 @@ export const genres = async (with_origin_country = '', page = 1, with_genres, la
         console.log(error);
     }
 };
-
-genres();

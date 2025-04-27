@@ -20,5 +20,3 @@ export const detail = async (id, type = 'movie', language = 'vi') => {
         console.log(error);
     }
 };
-
-detail();

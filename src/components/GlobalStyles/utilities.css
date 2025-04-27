@@ -1,7 +1,3 @@
-.content {
-    @apply mx-auto my-0 w-[var(--content-width)];
-}
-
 .btn {
     @apply cursor-pointer touch-manipulation;
     @apply px-[12px] py-[6px];

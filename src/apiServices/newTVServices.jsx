@@ -14,5 +14,3 @@ export const newTV = async (language = 'vi', page = 1) => {
         console.log(error);
     }
 };
-
-newTV();

@@ -67,20 +67,16 @@
 
 @keyframes expandHeight {
     0% {
-        height: 0;
+        max-height: 0;
         opacity: 0;
     }
-    50% {
-        height: 50%;
-        opacity: 0.5;
-    }
     100% {
-        height: auto;
+        max-height: 400px; /* Điều chỉnh cho phù hợp */
         opacity: 1;
     }
 }
 
 .expand-animation {
-    animation: expandHeight 0.5s ease-out forwards;
+    animation: expandHeight 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     overflow: hidden;
 }

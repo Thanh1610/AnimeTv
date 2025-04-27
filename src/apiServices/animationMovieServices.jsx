@@ -18,5 +18,3 @@ export const animationMovie = async (language = 'vi', page = 1) => {
         console.log(error);
     }
 };
-
-animationMovie();

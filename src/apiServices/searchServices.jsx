@@ -15,5 +15,3 @@ export const search = async (query, language = 'vi', page = 1) => {
         console.log(error);
     }
 };
-
-search();

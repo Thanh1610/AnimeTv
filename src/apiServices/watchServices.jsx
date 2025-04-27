@@ -21,5 +21,3 @@ export const watch = async (id, type = 'movie') => {
         console.log(error);
     }
 };
-
-watch();

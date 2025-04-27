@@ -34,5 +34,3 @@ export const topRate = async (
         console.log(error);
     }
 };
-
-topRate();

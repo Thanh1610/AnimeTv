@@ -18,5 +18,3 @@ export const anime = async (language = 'vi', page = 1) => {
         console.log(error);
     }
 };
-
-anime();

@@ -35,5 +35,3 @@ export const chinaAnimation = async (
         console.log(error);
     }
 };
-
-chinaAnimation();

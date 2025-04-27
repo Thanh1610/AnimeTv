@@ -17,5 +17,3 @@ export const nation = async (with_genres = '', page = 1, language = 'vi', with_o
         console.log(error);
     }
 };
-
-nation();

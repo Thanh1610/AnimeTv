@@ -45,5 +45,3 @@ export const filters = async (
         console.log(error);
     }
 };
-
-filters();

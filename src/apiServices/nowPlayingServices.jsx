@@ -14,5 +14,3 @@ export const nowPlaying = async (language = 'vi', page = 1) => {
         console.log(error);
     }
 };
-
-nowPlaying();

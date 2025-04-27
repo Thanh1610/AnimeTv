@@ -57,10 +57,13 @@ function Login({ onClose, onLoginSuccess }) {
     const inputStyles = `w-full rounded-[0.25rem] border-1 border-[#66afe9]
      bg-white px-3 py-1.5 text-black`;
     return (
-        <div className="fixed inset-0 z-[9999] bg-black/30" onClick={handleOverlayClick}>
+        <div
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30"
+            onClick={handleOverlayClick}
+        >
             <form
                 className={clsx(
-                    'box-shadow mx-auto my-8 min-h-14 w-[37.5rem] bg-[#151d25]',
+                    'box-shadow mx-2.5 my-4 min-h-14 w-full max-w-[37.5rem] bg-[#151d25] px-2 sm:px-6',
                     isVisible ? 'dropdown' : 'dropdown-hide',
                 )}
                 onClick={handleModalClick}
