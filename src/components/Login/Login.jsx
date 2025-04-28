@@ -1,176 +1,55 @@
-import clsx from 'clsx';
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
-import { toast } from 'react-toastify';
+import RegisterForm from './RegisterForm';
+import LoginForm from './LoginForm';
+import { AnimatePresence, motion } from 'motion/react';
 
 function Login({ onClose, onLoginSuccess }) {
-    const [isVisible, setIsVisible] = useState(true);
-    const [registerOn, setRegisterOn] = useState(false);
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [changeForm, setChangeForm] = useState(false);
 
     const handleOverlayClick = () => {
         handleClose();
     };
 
-    const handleModalClick = (e) => {
-        e.stopPropagation();
+    const handleChangeFrom = () => {
+        setChangeForm((prev) => !prev);
     };
 
     const handleClose = () => {
-        setIsVisible(false);
+        onClose();
     };
 
-    const handleAnimationEnd = () => {
-        if (!isVisible) {
-            onClose();
-        }
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (registerOn) {
-            if (password !== confirmPassword) {
-                toast.error('Mật khẩu không khớp!');
-                return;
-            }
-            const user = { name, email, password };
-            localStorage.setItem('user', JSON.stringify(user));
-            onLoginSuccess(user);
-            toast.success('Đăng kí thành công !');
-            handleClose();
-        } else {
-            const storedUser = JSON.parse(localStorage.getItem('user'));
-            if (storedUser && storedUser.email === email && storedUser.password === password) {
-                toast.success('Đăng Nhập thành công !');
-                onLoginSuccess(storedUser);
-                handleClose();
-            } else {
-                toast.error('Email hoặc mật khẩu không đúng!');
-            }
-        }
-    };
-
-    const lablelStyles = `mb-1 inline-block max-w-full font-semibold`;
-    const inputStyles = `w-full rounded-[0.25rem] border-1 border-[#66afe9]
-     bg-white px-3 py-1.5 text-black`;
     return (
-        <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30"
-            onClick={handleOverlayClick}
-        >
-            <form
-                className={clsx(
-                    'box-shadow mx-2.5 my-4 min-h-14 w-full max-w-[37.5rem] bg-[#151d25] px-2 sm:px-6',
-                    isVisible ? 'dropdown' : 'dropdown-hide',
-                )}
-                onClick={handleModalClick}
-                onAnimationEnd={handleAnimationEnd}
-                onSubmit={handleSubmit}
+        <AnimatePresence>
+            <div
+                className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30"
+                onClick={handleOverlayClick}
             >
-                {/* header */}
-                <div className="flex items-center justify-between border-b-1 border-[#e5e5e5] px-3.5 py-2">
-                    <p>{registerOn ? 'Đăng Kí' : 'Đăng Nhập'}</p>
-                    <div className="cursor-pointer text-[1.3125rem] font-black hover:text-white" onClick={handleClose}>
-                        &times;
-                    </div>
-                </div>
-
-                {/* body */}
-                <div className="p-3.5">
-                    {registerOn && (
-                        <div className="mb-3.5">
-                            <label className={lablelStyles} htmlFor="name">
-                                Tên :
-                            </label>
-                            <input
-                                id="name"
-                                type="text"
-                                className={inputStyles}
-                                required
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                        </div>
-                    )}
-                    <div className="mb-3.5">
-                        <label className={lablelStyles} htmlFor="email">
-                            Email :
-                        </label>
-                        <input
-                            id="email"
-                            type="email"
-                            className={inputStyles}
-                            required
-                            onChange={(e) => setEmail(e.target.value)}
+                <motion.div
+                    initial={{ opacity: 0, scaleY: 0.95 }}
+                    animate={{ opacity: 1, scaleY: 1 }}
+                    exit={{ opacity: 0, scaleY: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ transformOrigin: 'top' }}
+                    className="mx-auto w-full max-w-[37.5rem]"
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    {!changeForm ? (
+                        <LoginForm
+                            onClose={handleClose}
+                            onLoginSuccess={onLoginSuccess}
+                            changeForm={handleChangeFrom}
                         />
-                    </div>
-
-                    <div className="mb-3.5">
-                        <label className={lablelStyles} htmlFor="password">
-                            Mật khẩu :
-                        </label>
-                        <input
-                            id="password"
-                            type="password"
-                            className={inputStyles}
-                            required
-                            onChange={(e) => setPassword(e.target.value)}
+                    ) : (
+                        <RegisterForm
+                            onClose={handleClose}
+                            onLoginSuccess={onLoginSuccess}
+                            changeForm={handleChangeFrom}
                         />
-                    </div>
-
-                    {registerOn && (
-                        <div className="mb-3.5">
-                            <label className={lablelStyles} htmlFor="password1">
-                                Nhập lại mật khẩu: :
-                            </label>
-                            <input
-                                id="password1"
-                                type="password"
-                                className={inputStyles}
-                                required
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                            />
-                        </div>
                     )}
-
-                    {!registerOn && (
-                        <div className="mb-3.5 flex items-center gap-3">
-                            <div className={lablelStyles}>Ghi nhớ đăng nhập :</div>
-                            <input type="checkbox" />
-                        </div>
-                    )}
-
-                    <div className="mb-3.5 flex items-center gap-3">
-                        <div className={lablelStyles}>
-                            {registerOn ? 'Bạn đã có tài khoản?' : 'Bạn chưa có tài khoản?'}
-                        </div>
-                        <div
-                            className="text-[#87c3f9] hover:text-[#23527c]"
-                            onClick={() => setRegisterOn((prev) => !prev)}
-                        >
-                            {registerOn ? 'Đăng nhập ngay?' : 'Đăng ký ngay'}
-                        </div>
-                    </div>
-                </div>
-
-                {/* footer */}
-                <div className="flex items-center justify-end gap-2 border-t-1 border-[#e5e5e5] p-3.5">
-                    <button
-                        onClick={handleClose}
-                        type="button"
-                        className="btn hover:bg-text rounded-[0.25rem] bg-white text-black"
-                    >
-                        Đóng
-                    </button>
-
-                    <button type="submit" className={clsx('btn btn-danger w-[100px] rounded-[0.25rem] text-white')}>
-                        {registerOn ? 'Đăng ký' : 'Đăng nhập'}
-                    </button>
-                </div>
-            </form>
-        </div>
+                </motion.div>
+            </div>
+        </AnimatePresence>
     );
 }
 

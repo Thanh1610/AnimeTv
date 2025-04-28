@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import clsx from 'clsx';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { mappings, filters } from '@/config/filterConfig';
+import { twMerge } from 'tailwind-merge';
+import { AnimatePresence, motion } from 'motion/react';
 
 function Filters({ onApplyFilters }) {
     const [openFilters, setOpenFilters] = useState(false);
@@ -47,8 +49,8 @@ function Filters({ onApplyFilters }) {
         <>
             {/* heading */}
             <div className="border-b-1 border-[#1d2731]">
-                <div className="flex items-center justify-between p-3.5">
-                    <div>
+                <div className="flex items-center justify-between p-3">
+                    <div className="hidden md:block">
                         MoviXTv | Phim Moi | Phim Hay | Xem Phim Online | Phim China | Xem hoạt Hình Trung Quốc | hh3d
                     </div>
                     <div
@@ -62,27 +64,36 @@ function Filters({ onApplyFilters }) {
             </div>
 
             {/* fillter */}
-            {openFilters && (
-                <div className={clsx('dropdown flex items-center pt-3.5 pb-6')}>
-                    <div className="mx-3.5 mb-2.5 flex w-full items-center justify-between gap-2">
-                        {filters.map((filter, index) => (
-                            <select
-                                key={index}
-                                className={selectStyles}
-                                onChange={(e) => handleFilterChange(filter.key, e.target.value)}
-                            >
-                                {filter.options.map((option, i) => (
-                                    <option key={i}>{option}</option>
-                                ))}
-                            </select>
-                        ))}
+            <AnimatePresence>
+                {openFilters && (
+                    <motion.div
+                        initial={{ opacity: 0, scaleY: 0.95 }}
+                        animate={{ opacity: 1, scaleY: 1 }}
+                        exit={{ opacity: 0, scaleY: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                        style={{ transformOrigin: 'top' }}
+                        className="flex items-center pt-3.5 pb-6"
+                    >
+                        <div className="mx-2 mb-2.5 flex w-full flex-col flex-wrap items-center justify-between gap-3 md:flex-row">
+                            {filters.map((filter, index) => (
+                                <select
+                                    key={index}
+                                    className={twMerge(selectStyles, 'w-full lg:w-auto')}
+                                    onChange={(e) => handleFilterChange(filter.key, e.target.value)}
+                                >
+                                    {filter.options.map((option, i) => (
+                                        <option key={i}>{option}</option>
+                                    ))}
+                                </select>
+                            ))}
 
-                        <button className="btn btn-danger w-40 rounded-[20px] text-white" onClick={applyFilters}>
-                            Lọc Phim
-                        </button>
-                    </div>
-                </div>
-            )}
+                            <button className="btn btn-danger w-40 rounded-[20px] text-white" onClick={applyFilters}>
+                                Lọc Phim
+                            </button>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 }
