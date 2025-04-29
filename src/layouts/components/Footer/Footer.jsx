@@ -5,8 +5,8 @@ import config from '@/config';
 function Footer() {
     return (
         <div className="my-5 border-t-[4px] border-[#0e1215] bg-[#101720]">
-            <div className="container mx-auto">
-                <div className="w-[33.3333%] bg-[#0e1215] p-5 pt-2.5">
+            <div className="container mx-auto px-5">
+                <div className="w-full bg-[#0e1215] p-5 pt-2.5">
                     <div className="border-b-1 border-[#1e262d] px-5 py-3.5">
                         <Logo />
                     </div>

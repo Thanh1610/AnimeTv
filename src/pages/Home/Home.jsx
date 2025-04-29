@@ -18,16 +18,16 @@ function Home() {
         <div className="container mx-auto bg-[#151d25]">
             <Filters onApplyFilters={applyFilters} />
             <FeaturedMovies title="Phim đề cử" fetchMovies={topRateServices.topRate} limit={6} />
-            <div className="flex w-full gap-2 md:px-3.5">
-                <div className="w-[50%]">
+            <div className="flex w-full flex-col gap-2 md:px-3.5 lg:flex-row">
+                <div className="w-full lg:w-[50%]">
                     <MovieListSmall title="Phim Lẻ Mới Phát Hành" fetchMovies={newMovieServices.newMovie} limit={3} />
                 </div>
-                <div className="w-[50%]">
+                <div className="w-full lg:w-[50%]">
                     <MovieListSmall title="Phim Bộ Mới Phát Hành" fetchMovies={newTVServices.newTV} limit={3} />
                 </div>
             </div>
-            <div className="flex">
-                <div className="w-[70%]">
+            <div className="flex flex-col lg:flex-row">
+                <div className="w-full lg:w-[70%]">
                     <MovieList
                         title="Phim chiếu rạp"
                         fetchMovies={nowPlayingServices.nowPlaying}
@@ -50,7 +50,7 @@ function Home() {
                         relate={{ nation: 'china', iso: 'CN' }}
                     />
                 </div>
-                <div className="w-[30%]">
+                <div className="w-full lg:w-[30%]">
                     <MovieListSmall
                         title="Hoạt Hình Bộ AnimeTv"
                         fetchMovies={animationTvServices.animationTv}

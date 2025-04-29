@@ -71,7 +71,7 @@ function MovieList({
                 {isLoading ? (
                     <div className="w-full text-center text-gray-500">Đang tải...</div>
                 ) : (
-                    <div className="flex flex-wrap gap-3">{renderMovies()}</div>
+                    <div className="grid-info flex gap-3">{renderMovies()}</div>
                 )}
                 {seeAll && (
                     <div onClick={handleSeeAllClick} className="justify-left mr-7 flex cursor-pointer">

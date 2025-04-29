@@ -48,7 +48,7 @@ function MovieInfo({ data }) {
                 )}
             >
                 <div
-                    className="group relative flex h-[260px] w-[180px] flex-shrink-0 overflow-hidden rounded-[0.625rem]"
+                    className="group relative overflow-hidden rounded-[0.625rem]"
                     onMouseEnter={() => setIsHover(true)}
                     onMouseLeave={() => setIsHover(false)}
                     onClick={handleClick}
