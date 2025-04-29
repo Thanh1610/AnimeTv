@@ -100,3 +100,15 @@
     border-right: 16px solid transparent;
     border-top: 16px solid #f7f7f7;
 }
+
+.movie-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 cột mặc định */
+}
+
+@media (min-width: 1024px) {
+    .movie-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+}

@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-
 import MovieInfo from '@/components/MovieInfo';
 import Pagination from '@/components/Pagination';
 import { useNavigate } from 'react-router';
 import config from '@/config';
+import useMoviesFetch from '@/hook/useMoviesFetch';
 
 function MovieList({
     title,
@@ -21,70 +20,27 @@ function MovieList({
     pagination,
     currentPage,
     relate,
+    className,
 }) {
-    const [movies, setMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        let isMounted = true;
-        setIsLoading(true);
-
-        const fetchApi = async () => {
-            try {
-                const result = await fetchMovies(
-                    query,
-                    currentPage,
-                    withGenres,
-                    nation,
-                    sort_by,
-                    type,
-                    with_origin_country,
-                    primary_release_year,
-                    first_air_date_year,
-                );
-
-                if (isMounted) {
-                    if (!result || result.length === 0) {
-                        setMovies([]);
-                    } else {
-                        setMovies(limit ? result.slice(0, limit) : result);
-                    }
-                }
-            } catch (error) {
-                if (isMounted) {
-                    console.error('Error fetching movies:', error);
-                    setMovies([]);
-                }
-            } finally {
-                if (isMounted) {
-                    setIsLoading(false);
-                }
-            }
-        };
-
-        fetchApi();
-
-        return () => {
-            isMounted = false;
-        };
-    }, [
+    const { movies, isLoading } = useMoviesFetch({
         fetchMovies,
+        limit,
         query,
         currentPage,
         withGenres,
+        nation,
         sort_by,
         type,
         with_origin_country,
         primary_release_year,
         first_air_date_year,
-        nation,
-        limit,
-    ]);
+    });
 
     const renderMovies = () => {
         if (movies.length > 0) {
-            return movies.map((item) => <MovieInfo data={item} key={item.id} />);
+            return movies.map((item) => <MovieInfo data={item} key={item.id} className={className} />);
         }
         return (
             <div className="w-full text-center text-gray-500">Rất tiếc, không có nội dung nào trùng khớp yêu cầu.</div>
@@ -118,7 +74,7 @@ function MovieList({
                     <div className="flex flex-wrap gap-3">{renderMovies()}</div>
                 )}
                 {seeAll && (
-                    <div onClick={handleSeeAllClick} className="mr-7 flex cursor-pointer justify-end">
+                    <div onClick={handleSeeAllClick} className="justify-left mr-7 flex cursor-pointer">
                         <div className="see-all my-[5px] w-[30%] rounded-[20px] py-1 pr-3.5 !text-right text-white">
                             Xem tất cả
                         </div>

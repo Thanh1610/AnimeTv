@@ -1,17 +1,18 @@
 import { faCirclePlay } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import { useState } from 'react';
 import React from 'react';
 import Tippy from '@tippyjs/react/headless';
 import { useNavigate } from 'react-router';
-import { twMerge } from 'tailwind-merge';
-
 import { toSlug } from '@/utils/request';
+
 import { countryCodes } from '@/config/countryCodes';
 import MovieTooltip from '@/components/MovieTooltip';
-
 function MovieInfo({ data }) {
     const [isHover, setIsHover] = useState(false);
+    const [imageLoading, setImageLoading] = useState(true);
+    const [imageError, setImageError] = useState(false);
     const countryMap = Object.fromEntries(countryCodes.map(({ code, name }) => [code, name]));
     const countries = data.origin_country?.map((code) => countryMap[code] || code).join(', ');
     const navigate = useNavigate();
@@ -26,6 +27,14 @@ function MovieInfo({ data }) {
         navigate(`/${slug}`, {
             state: { name, id, type },
         });
+    };
+
+    const handleImageLoad = () => {
+        setImageLoading(false);
+    };
+
+    const handleImageError = () => {
+        setImageError(true);
     };
 
     const formatViewCount = (count) => {
@@ -48,14 +57,14 @@ function MovieInfo({ data }) {
                 )}
             >
                 <div
-                    className="group relative flex h-[260px] w-[180px] flex-shrink-0 overflow-hidden rounded-[0.625rem]"
+                    className="group relative h-auto min-w-0 overflow-hidden rounded-[0.625rem]"
                     onMouseEnter={() => setIsHover(true)}
                     onMouseLeave={() => setIsHover(false)}
                     onClick={handleClick}
                 >
                     {/* status */}
                     <span
-                        className={twMerge(
+                        className={clsx(
                             'status absolute top-1 left-1 z-[100] px-1.5 py-0.5 text-[0.6875rem] text-white',
                             'z-[1000] rounded-tl-[0.5rem] rounded-tr-[0.1875rem] rounded-br-[0.5rem]',
                         )}
@@ -63,15 +72,33 @@ function MovieInfo({ data }) {
                         Vietsub - FHD
                     </span>
 
-                    {/* img */}
-                    <img
-                        className="h-full w-full transition-transform duration-300 group-hover:scale-125"
-                        src={`${import.meta.env.VITE_IMG_URL}${data.poster_path}`}
-                        alt=""
-                    />
+                    {/* img container */}
+                    <div className="relative w-full pt-[150%]">
+                        <div className="absolute inset-0">
+                            {imageLoading && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
+                                    <div className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent"></div>
+                                </div>
+                            )}
+
+                            {imageError ? (
+                                <div className="flex h-full w-full items-center justify-center bg-gray-800 text-white">
+                                    <span>Không thể tải ảnh</span>
+                                </div>
+                            ) : (
+                                <img
+                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-125"
+                                    src={`${import.meta.env.VITE_IMG_URL}${data.poster_path}`}
+                                    alt=""
+                                    onLoad={handleImageLoad}
+                                    onError={handleImageError}
+                                />
+                            )}
+                        </div>
+                    </div>
 
                     <span
-                        className={twMerge(
+                        className={clsx(
                             'btn-danger absolute right-0.5 bottom-14 z-[1000]',
                             'rounded-[0.1875rem] p-0.5 px-1 text-[0.6875rem] text-white',
                         )}
@@ -89,7 +116,7 @@ function MovieInfo({ data }) {
                         </p>
                     </div>
 
-                    {isHover && (
+                    {isHover && !imageError && (
                         <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                             <FontAwesomeIcon icon={faCirclePlay} className="text-3xl" />
                         </div>
