@@ -33,8 +33,8 @@ function MovieDetail({ data }) {
 
     return (
         <div className="flex flex-col px-3.5">
-            <div className="mb-5 flex w-full text-[0.75rem]">
-                <div className="relative h-[331px] w-[30%] overflow-hidden rounded-lg">
+            <div className="mb-5 flex w-full flex-col items-center text-[0.75rem] md:flex-row">
+                <div className="relative h-[400px] w-[300px] overflow-hidden rounded-lg lg:h-[331px] lg:w-[30%] xl:w-[25%]">
                     <Bookmark className={'absolute mt-1.5 ml-1'} />
                     <img
                         className="h-full w-full object-cover"
@@ -57,7 +57,7 @@ function MovieDetail({ data }) {
                         </div>
                     </div>
                 </div>
-                <div className="flex w-[70%] flex-col justify-items-start gap-2.5 px-3.5">
+                <div className="flex w-full flex-col justify-items-start gap-2.5 px-3.5 lg:w-[70%]">
                     <DetailInfo data={data} />
                     <Rating data={data} className={'flex items-center'} />
                 </div>

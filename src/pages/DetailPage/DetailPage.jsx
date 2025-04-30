@@ -31,11 +31,11 @@ function DetailPage() {
         <div className="bg-[#151d25]">
             <Filters onApplyFilters={applyFilters} />
 
-            <div className="flex">
-                <div className="w-[70%]">
+            <div className="flex flex-col lg:flex-row">
+                <div className="w-full lg:w-[70%]">
                     <MovieDetail data={info} />
                 </div>
-                <div className="w-[30%]">
+                <div className="w-full lg:w-[30%]">
                     <MovieListSmall
                         title="Hoạt Hình Bộ AnimeTv"
                         fetchMovies={animationTvServices.animationTv}

@@ -41,7 +41,7 @@ function Watch({ data, showLayout }) {
     return (
         <div className="px-3.5">
             <Video data={data} showLayout={showLayout} />
-            <div className={wrapperInfo}>
+            <div className={twMerge(wrapperInfo, 'flex flex-col gap-2 lg:flex-row')}>
                 <div className="relative flex">
                     <Bookmark className={'mt-1.5 mr-2'} />
                     <div className="flex flex-col items-start justify-center">

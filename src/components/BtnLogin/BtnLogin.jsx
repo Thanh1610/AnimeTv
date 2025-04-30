@@ -69,7 +69,7 @@ function BtnLogin({ className }) {
 
             <AnimatePresence>
                 {openMenu && (
-                    <motion.div {...menuMotion} className="absolute top-full right-0 z-50 mt-2">
+                    <motion.div {...menuMotion} className="absolute top-full right-0 z-100 mt-2">
                         <UserMenu closeMenu={handleClick} />
                     </motion.div>
                 )}

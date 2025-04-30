@@ -17,16 +17,12 @@ function SearchPage() {
         <div className="bg-[#151d25]">
             <Filters onApplyFilters={applyFilters} />
 
-            <div className="flex">
-                <div className="w-[70%]">
-                    <MovieList
-                        title={`Tìm kiếm Phim: ${value}`}
-                        fetchMovies={searchServices.search}
-                        query={value}
-                    />
+            <div className="flex flex-col lg:flex-row">
+                <div className="w-full lg:w-[70%]">
+                    <MovieList title={`Tìm kiếm Phim: ${value}`} fetchMovies={searchServices.search} query={value} />
                 </div>
 
-                <div className="w-[30%]">
+                <div className="w-full lg:w-[30%]">
                     <MovieListSmall
                         title="Hoạt Hình Bộ AnimeTv"
                         fetchMovies={animationTvServices.animationTv}

@@ -46,8 +46,8 @@ function AccountSetting({ title, update }) {
         'box-shadow h-[34px] w-full rounded-[4px] border-1 border-[#ccc] bg-white px-3 py-1.5 text-[14px] text-[#555]';
     return (
         <div className="bg-[#151d25]">
-            <div className="flex">
-                <div className="w-[70%] px-3.5 pt-2.5 pb-5">
+            <div className="flex flex-col lg:flex-row">
+                <div className="w-full px-3.5 pt-2.5 pb-5 lg:w-[70%]">
                     <h3 className="mt-5 mb-2.5 text-2xl leading-[1.1]">{title}</h3>
 
                     <form onSubmit={handleSubmit} className="items-left flex flex-col">
@@ -110,7 +110,7 @@ function AccountSetting({ title, update }) {
                     </form>
                 </div>
 
-                <div className="w-[30%]">
+                <div className="w-full lg:w-[30%]">
                     <MovieListSmall
                         title="Hoạt Hình Bộ AnimeTv"
                         fetchMovies={animationTvServices.animationTv}
