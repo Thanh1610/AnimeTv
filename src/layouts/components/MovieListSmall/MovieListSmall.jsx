@@ -52,6 +52,7 @@ function MovieList({ title, fetchMovies, limit }) {
                             <img
                                 src={`${import.meta.env.VITE_IMG_URL}${item.poster_path}`}
                                 alt=""
+                                loading="lazy"
                                 className={clsx(
                                     'h-24 w-[4.6875rem]',
                                     isHover === item.id && 'scale-110 transition-transform duration-300',

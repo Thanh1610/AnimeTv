@@ -1,9 +1,9 @@
-import MovieListSmall from '@/layouts/components/MovieListSmall';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faEye } from '@fortawesome/free-regular-svg-icons';
 import { toast } from 'react-toastify';
 
+import MovieListSmall from '@/layouts/components/MovieListSmall';
 import * as animationTvServices from '@/apiServices/animationTvServices';
 import * as animationMovieServices from '@/apiServices/animationMovieServices';
 

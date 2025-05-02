@@ -29,7 +29,6 @@ function FilterResultsPage() {
                         with_origin_country={filterParams.with_origin_country}
                         primary_release_year={filterParams.primary_release_year}
                         first_air_date_year={filterParams.first_air_date_year}
-                        pagination
                         currentPage={page}
                     />
                 </div>

@@ -22,7 +22,7 @@ function Login({ onClose, onLoginSuccess }) {
     return (
         <AnimatePresence>
             <div
-                className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30"
+                className="fixed inset-0 z-[9999] flex min-h-screen items-center justify-center bg-black/30"
                 onClick={handleOverlayClick}
             >
                 <motion.div

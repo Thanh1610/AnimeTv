@@ -1,8 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { twMerge } from 'tailwind-merge';
-// eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from 'motion/react';
 
 import Login from '@/components/Login';
@@ -69,7 +69,7 @@ function BtnLogin({ className }) {
 
             <AnimatePresence>
                 {openMenu && (
-                    <motion.div {...menuMotion} className="absolute top-full right-0 z-100 mt-2">
+                    <motion.div {...menuMotion} className="absolute top-full right-0 z-[10000] mt-2">
                         <UserMenu closeMenu={handleClick} />
                     </motion.div>
                 )}

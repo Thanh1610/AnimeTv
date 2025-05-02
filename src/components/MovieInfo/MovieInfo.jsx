@@ -68,6 +68,7 @@ function MovieInfo({ data }) {
                         className="h-full w-full transition-transform duration-300 group-hover:scale-125"
                         src={`${import.meta.env.VITE_IMG_URL}${data.poster_path}`}
                         alt=""
+                        loading="lazy"
                     />
 
                     <span

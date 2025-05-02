@@ -1,21 +1,23 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Bookmark, DetailInfo, Rating } from './components';
 import { faCaretRight, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import EpisodeList from './components/EpisodeList';
-
-import MovieList from '@/layouts/components/MovieList';
-import * as filtersServices from '@/apiServices/filtersServices';
-import Login from '../Login';
 import { useNavigate } from 'react-router';
+
+import EpisodeList from './components/EpisodeList';
+import MovieList from '@/layouts/components/MovieList';
+import Login from '../Login';
 import { toSlug } from '@/utils/request';
+import { Bookmark, DetailInfo, Rating } from './components';
+import * as filtersServices from '@/apiServices/filtersServices';
 
 function MovieDetail({ data }) {
     const [hideEpisode, setHideEpisode] = useState(true);
     const [openModal, setOpenModal] = useState(false);
 
     const navigate = useNavigate();
+
     const slug = toSlug(data?.name || data?.title);
+
     const handleEpisodeClick = () => {
         if (!data) return;
         navigate(`/${slug}/${data.id}`, {
@@ -40,6 +42,7 @@ function MovieDetail({ data }) {
                         className="h-full w-full object-cover"
                         src={`${import.meta.env.VITE_IMG_URL}${data.poster_path}`}
                         alt=""
+                        loading="lazy"
                     />
 
                     <div className="absolute bottom-2.5 left-2.5 flex w-full gap-2 text-white">

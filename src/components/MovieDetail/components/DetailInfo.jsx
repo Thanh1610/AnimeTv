@@ -1,10 +1,11 @@
 import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { toSlug } from '@/utils/request';
 import { useNavigate } from 'react-router';
+import { toSlug } from '@/utils/request';
 
 function DetailInfo({ data }) {
     const navigate = useNavigate();
+
     const handleNationClick = (country) => {
         if (!country) return;
         const nationName = toSlug(country?.name);

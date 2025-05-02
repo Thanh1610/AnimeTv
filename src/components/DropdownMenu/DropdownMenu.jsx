@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 function DropdownMenu({ trigger, items, placement = 'left', onItemClick, disabled = false }) {
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef(null);
 
-    // Close menu when clicking outside
+    // Close menu
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -41,7 +41,7 @@ function DropdownMenu({ trigger, items, placement = 'left', onItemClick, disable
     return (
         <div className="relative w-full lg:w-auto" ref={menuRef}>
             <div
-                className={clsx(
+                className={twMerge(
                     'flex h-full items-center text-[0.875rem] text-[#d0d0d0]',
                     'hover:bg-black hover:text-[#ea8300]',
                     isOpen ? 'bg-black text-[#ea8300]' : '',
@@ -56,8 +56,7 @@ function DropdownMenu({ trigger, items, placement = 'left', onItemClick, disable
                 {isOpen && (
                     <motion.div
                         {...menuMotion}
-                        className={clsx(
-                            // Chỉ nổi khi lg trở lên
+                        className={twMerge(
                             'flex w-full flex-col items-center justify-between bg-[#1f3d58]',
                             'lg:absolute lg:top-full',
                             placement === 'left' ? 'lg:left-0' : 'lg:right-0',
