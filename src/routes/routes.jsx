@@ -3,7 +3,7 @@ import config from '@/config';
 import Home from '@/pages/Home';
 import Search from '@/pages/SearchPage';
 import Account from '@/pages/Account';
-import ChangePassword from '@/pages/ChangePassword';
+import ChangePassword from '../pages/ChangePassword';
 import GenrePage from '@/pages/GenrePage';
 import NationPage from '@/pages/NationPage';
 import FilterResultsPage from '@/pages/FilterResultsPage';
